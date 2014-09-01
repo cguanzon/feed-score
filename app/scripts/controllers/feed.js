@@ -8,31 +8,24 @@
  * Controller of the feedScoreApp
  */
 angular.module('feedScoreApp')
-  .controller('FeedCtrl', function ($scope, FeedService) {
+  .controller('FeedCtrl', function ($scope, $window, FeedService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.layout = 'list';
 
-    $scope.setLayout = function(layout){
-        $scope.layout = layout;
+    $scope.instagramLogin = function(){
+        $window.open(FeedService.getAuthorizationUrl());
     };
 
-    $scope.isLayout = function(layout){
-        return $scope.layout === layout;
+    $scope.getSelfUser = function(){
+        FeedService.getUser().then(function(res){
+            $scope.selfUser = res.data;
+        });
     };
 
-    $scope.authorizationUrl = FeedService.getAuthorizationUrl();
-
-    $scope.pics = [];
-
-    FeedService.fetchPopular(function(data){
-
-        $scope.pics = data;
-    });
   });
 
 
