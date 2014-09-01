@@ -29,6 +29,8 @@ exports.handleauth = function(req, res) {
         } else {
             console.log('Yay! Access token is ' + result.access_token);
             api.use({
+                client_id: 'be573c8873f5496caab40ab22f60b895',
+                client_secret: '440cc4c661ee4e8baa158dc4b4198e51',
                 access_token: result.access_token
             });
             res.send('You made it!!');
