@@ -16,6 +16,7 @@
     <!-- endbuild -->
   </head>
   <body ng-app="feedScoreApp">
+    <div class="container-fluid" ui-view></div>
 
 
 
@@ -47,6 +48,8 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/feed.js"></script>
+        <script src="scripts/services/feed-service.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -1,0 +1,19 @@
+
+<a ng-href="{{authorizationUrl}}"><button class="btn btn-default">Login to Instagram</button></a>
+
+
+
+<ul ng-show="isLayout('grid')" class="grid">
+    <!-- A view with big photos and no text -->
+    <li ng-repeat="p in pics">
+        <a href="{{p.link}}" target="_blank"><img ng-src="{{p.images.low_resolution.url}}" /></a>
+    </li>
+</ul>
+
+<ul ng-show="isLayout('list')" class="list">
+    <!-- A compact view smaller photos and titles -->
+    <li ng-repeat="p in pics">
+        <a href="{{p.link}}" target="_blank"><img ng-src="{{p.images.thumbnail.url}}" /></a>
+        <p>{{p.caption.text}}</p>
+    </li>
+</ul>
