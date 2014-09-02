@@ -71,13 +71,17 @@ app.get('/user_self_feed', function(req, res){
         if (err) {
             res.send(err);
         } else {
-            var feedWithStats = feed;
-            for(var i= 0; i < feedWithStats.length; i++){
-                feedWithStats[i].likeScore = feedWithStats[i].likes.count * 2;
-                feedWithStats[i].commentScore = feedWithStats[i].comments.count * 3;
-                feedWithStats[i].combinedScore = feedWithStats[i].likeScore + feedWithStats[i].commentScore;
+            var fixedFeed = feed;
+            for(var i= 0; i < fixedFeed.length; i++){
+                fixedFeed[i].caption.text =
+                        fixedFeed[i].caption.text.length <= 80 ?
+                            fixedFeed[i].caption.text : fixedFeed[i].caption.text.substring(0,79) + ' ...';
+                fixedFeed[i].caption.created_time *= 1000;
+                fixedFeed[i].likeScore = fixedFeed[i].likes.count * 2;
+                fixedFeed[i].commentScore = fixedFeed[i].comments.count * 3;
+                fixedFeed[i].combinedScore = fixedFeed[i].likeScore + fixedFeed[i].commentScore;
             }
-            res.send(feedWithStats);
+            res.send(fixedFeed);
         }
     });
 });
