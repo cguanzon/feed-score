@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <a ng-click="instagramLogin()"><button class="btn btn-primary">Login to Instagram</button></a>
+
+            <h2>{{selfUser.username}}</h2>
+            <img ng-src="{{selfUser.profile_picture}}"/>
+            <p>Full Name: {{selfUser.full_name}}</p>
+            <p>Bio: {{selfUser.bio}}</p>
+            <p>Website: {{selfUser.website}}</p>
+
+            <h2>Counts</h2>
+            <p>Media: {{selfUser.counts.media}}</p>
+            <p>Followers: {{selfUser.counts.followed_by}}</p>
+            <p>Following: {{selfUser.counts.follows}}</p>
+        </div>
+
+        <div class="col-md-8">
+            <h2>Your Last 20 Posts</h2>
+
+            <div class="well row" ng-repeat="medium in selfMediaRecent">
+                <div class="thumbnail col-md-4">
+                    <div class="caption">
+                        <p>{{medium.caption.text}}</p>
+                        <p>Time: {{medium.caption.created_time | date : 'medium'}}</p>
+                        <p><a target="_blank" ng-href="{{medium.link}}" class="label label-danger">Visit</a></p>
+                    </div>
+                    <img ng-src="{{medium.images.low_resolution.url}}">
+                </div>
+
+                <div class="col-md-8 feed-stats">
+                    <p class="text-primary">Stats</p>
+                    <p>Comment Count: {{medium.comments.count}}</p>
+                    <p>Like Count: {{medium.likes.count}}</p>
+                    <p class="text-primary"> LikeScore: <span class="text-danger">{{medium.likeScore}}</span></p>
+                    <p class="text-primary">CommentScore: <span class="text-danger">{{medium.commentScore}}</span></p>
+                    <p class="text-primary">CombinedScore: <span class="text-danger">{{medium.combinedScore}}</span></p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
