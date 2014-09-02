@@ -1,13 +1,44 @@
+<div class="row">
+    <div class="col-md-4">
+        <a ng-click="instagramLogin()"><button class="btn btn-primary">Login to Instagram</button></a>
 
-<a ng-click="instagramLogin()"><button class="btn btn-primary">Login to Instagram</button></a>
+        <a ng-click="getSelfUser()"><button class="btn btn-primary">Load Your Info</button></a>
 
-<a ng-click="getSelfUser()"><button class="btn btn-primary">Load Your Info</button></a>
+        <h2>{{selfUser.username}}</h2>
+        <img ng-src="{{selfUser.profile_picture}}"/>
+        <p>Full Name: {{selfUser.full_name}}</p>
+        <p>Bio: {{selfUser.bio}}</p>
+        <p>Website: {{selfUser.website}}</p>
 
-<p>{{selfUser}}</p>
+        <h2>Counts</h2>
+        <p>Media: {{selfUser.counts.media}}</p>
+        <p>Followers: {{selfUser.counts.followed_by}}</p>
+        <p>Following: {{selfUser.counts.follows}}</p>
+    </div>
 
-<h2>{{selfUser.username}}</h2>
-<img ng-src="{{selfUser.profile_picture}}"/>
-<p>{{selfUser.full_name}}</p>
+    <div class="col-md-8">
+        <h2>Your Feed with Stats</h2>
+
+        <div class="well row" ng-repeat="feedItem in selfFeed">
+            <div class="col-md-4 thumbnail">
+                <img ng-src="{{feedItem.images.thumbnail.url}}"/>
+            </div>
+
+            <div class="col-md-4 feed-stats">
+                <p>From User: {{feedItem.user.username}}</p>
+                <p>Comment Count: {{feedItem.comments.count}}</p>
+                <p>Like Count: {{feedItem.likes.count}}</p>
+                <p class="text-primary"> LikeScore: <span class="text-danger">{{feedItem.likeScore}}</span></p>
+                <p class="text-primary">CommentScore: <span class="text-danger">{{feedItem.commentScore}}</span></p>
+                <h3 class="text-primary">CombinedScore: <span class="text-danger">{{feedItem.combinedScore}}</span></h3>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
 
 
 

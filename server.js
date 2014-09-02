@@ -48,13 +48,38 @@ app.get('/user', function(req, res){
 
     api.user('self', function(err, result, remaining, limit) {
         if (err) {
-            console.log(err.body);
             res.send(err);
         } else {
             res.send(result);
         }
     });
 
+});
+
+app.get('/user_media_recent', function(req, res){
+    api.user_media_recent('self', function(err, result, pagination, remaining, limit){
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+app.get('/user_self_feed', function(req, res){
+    api.user_self_feed(function(err, feed, pagination, remaining, limit){
+        if (err) {
+            res.send(err);
+        } else {
+            var feedWithStats = feed;
+            for(var i= 0; i < feedWithStats.length; i++){
+                feedWithStats[i].likeScore = feedWithStats[i].likes.count * 2;
+                feedWithStats[i].commentScore = feedWithStats[i].comments.count * 3;
+                feedWithStats[i].combinedScore = feedWithStats[i].likeScore + feedWithStats[i].commentScore;
+            }
+            res.send(feedWithStats);
+        }
+    });
 });
 
 app.listen(8000);

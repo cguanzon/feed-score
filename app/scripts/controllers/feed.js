@@ -20,11 +20,22 @@ angular.module('feedScoreApp')
         $window.open(FeedService.getAuthorizationUrl());
     };
 
+    $scope.getSelfFeed = function(){
+        FeedService.getSelfFeed().then(function(res){
+            $scope.selfFeed = res.data;
+        });
+    };
+
     $scope.getSelfUser = function(){
         FeedService.getUser().then(function(res){
             $scope.selfUser = res.data;
+            $scope.getSelfFeed();
         });
     };
+
+    $scope.getSelfUser();
+
+
 
   });
 
