@@ -20,6 +20,10 @@ angular.module('feedScoreApp')
             return $http({method: 'GET', url: 'http://localhost:8000/user'});
         };
 
+        this.getUserMediaRecent = function(){
+            return $http({method: 'GET', url: 'http://localhost:8000/user_media_recent'});
+        };
+
         this.getSelfFeed = function(){
             return $http({method: 'GET', url: 'http://localhost:8000/user_self_feed'});
         };

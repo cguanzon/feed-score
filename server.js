@@ -38,6 +38,25 @@ exports.handleauth = function(req, res) {
     });
 };
 
+//helper functions
+var fixFeed = function(feed){
+    var fixedFeed = feed;
+    for(var i= 0; i < fixedFeed.length; i++){
+        var context = fixedFeed[i];
+        if(context.caption) {
+            var contextCaption = context.caption;
+            contextCaption.text =
+                    contextCaption.text.length <= 80 ?
+                contextCaption.text : contextCaption.text.substring(0, 79) + ' ...';
+            contextCaption.created_time *= 1000;
+        }
+        context.likeScore = context.likes.count * 2;
+        context.commentScore = context.comments.count * 3;
+        context.combinedScore = context.likeScore + context.commentScore;
+    }
+    return fixedFeed;
+};
+
 // This is where you would initially send users to authorize
 app.get('/authorize_user', exports.authorize_user);
 // This is your redirect URI
@@ -61,7 +80,7 @@ app.get('/user_media_recent', function(req, res){
         if (err) {
             res.send(err);
         } else {
-            res.send(result);
+            res.send(fixFeed(result));
         }
     });
 });
@@ -71,17 +90,7 @@ app.get('/user_self_feed', function(req, res){
         if (err) {
             res.send(err);
         } else {
-            var fixedFeed = feed;
-            for(var i= 0; i < fixedFeed.length; i++){
-                fixedFeed[i].caption.text =
-                        fixedFeed[i].caption.text.length <= 80 ?
-                            fixedFeed[i].caption.text : fixedFeed[i].caption.text.substring(0,79) + ' ...';
-                fixedFeed[i].caption.created_time *= 1000;
-                fixedFeed[i].likeScore = fixedFeed[i].likes.count * 2;
-                fixedFeed[i].commentScore = fixedFeed[i].comments.count * 3;
-                fixedFeed[i].combinedScore = fixedFeed[i].likeScore + fixedFeed[i].commentScore;
-            }
-            res.send(fixedFeed);
+            res.send(fixFeed(feed));
         }
     });
 });
