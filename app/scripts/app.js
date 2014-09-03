@@ -10,9 +10,15 @@
  */
 angular
   .module('feedScoreApp', ['ui.router']).config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/login');
 
         $stateProvider
+            .state('login', {
+                url: '/login',
+                templateUrl: '/views/login.html',
+                controller: 'LoginCtrl'
+            })
+
             .state('feed', {
                 url: '/feed',
                 templateUrl: '/views/feed.html',

@@ -33,7 +33,7 @@ exports.handleauth = function(req, res) {
                 client_secret: '440cc4c661ee4e8baa158dc4b4198e51',
                 access_token: result.access_token
             });
-            res.send('You made it!!');
+            res.redirect('http://localhost:9000/#/dashboard');
         }
     });
 };

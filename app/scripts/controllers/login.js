@@ -2,17 +2,19 @@
 
 /**
  * @ngdoc function
- * @name feedScoreApp.controller:HeaderCtrl
+ * @name feedScoreApp.controller:LoginCtrl
  * @description
- * # HeaderCtrl
+ * # LoginCtrl
  * Controller of the feedScoreApp
  */
 angular.module('feedScoreApp')
-  .controller('HeaderCtrl', function ($scope) {
+  .controller('LoginCtrl', function ($scope, $state, FeedService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
+
+    $scope.authorizationUrl = FeedService.getAuthorizationUrl();
   });

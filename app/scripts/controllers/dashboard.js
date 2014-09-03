@@ -8,16 +8,13 @@
  * Controller of the feedScoreApp
  */
 angular.module('feedScoreApp')
-  .controller('DashboardCtrl', function ($scope, $window, FeedService) {
+  .controller('DashboardCtrl', function ($scope, FeedService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.instagramLogin = function(){
-        $window.open(FeedService.getAuthorizationUrl());
-    };
 
     $scope.getSelfUser = function(){
         FeedService.getUser().then(function(res){
