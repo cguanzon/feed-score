@@ -18,12 +18,9 @@
 
         <div class="col-md-12">
             <h2>Your Stats Over the Last 20 Days</h2>
-            <p>Total LikeScore: {{selfMediaRecent.totalLikeScore}}</p>
-            <p>Total CommentScore: {{selfMediaRecent.totalCommentScore}}</p>
-            <p>Total CombinedScore: {{selfMediaRecent.totalCombinedScore}}</p>
-            <p>LikesScore per Media: {{selfMediaRecent.likeScorePerMedia}}</p>
-            <p>CommentScore per Media: {{selfMediaRecent.likeScorePerMedia}}</p>
-            <p>CombinedScore per Media: {{selfMediaRecent.combinedScorePerMedia}}</p>
+            <ul>
+                <li ng-repeat="stat in selfMediaRecent.stats">{{stat.name}}: {{stat.value | number: 1}}</li>
+            </ul>
         </div>
 
         <div class="col-md-8">

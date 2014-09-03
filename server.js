@@ -43,19 +43,24 @@ exports.handleauth = function(req, res) {
 var addAdvancedStats = function(fixedHolder){
     var advancedHolder = fixedHolder;
     var advancedFeed = advancedHolder.mediaArray;
-    advancedHolder.totalLikeScore = 0;
-    advancedHolder.totalCommentScore = 0;
-    advancedHolder.totalCombinedScore = 0;
-
+    advancedHolder.stats= {
+        totalLikeScore : {name: 'Total Like Score', value: 0},
+        totalCommentScore : {name: 'Total Comment Score', value: 0},
+        totalCombinedScore : {name: 'Total Combined Score', value: 0},
+        likeScorePerMedia : {name: 'LikeScore per Media', value: 0},
+        commentScorePerMedia : {name: 'CommentScore per Media', value: 0},
+        combinedScorePerMedia : {name: 'CombinedScore per Media', value: 0}
+    };
+    var statsContext = advancedHolder.stats;
     for(var i=0; i < advancedFeed.length; i++){
         var advancedContext = advancedFeed[i];
-        advancedHolder.totalLikeScore += advancedContext.likeScore;
-        advancedHolder.totalCommentScore += advancedContext.commentScore;
-        advancedHolder.totalCombinedScore += advancedContext.combinedScore;
+        statsContext.totalLikeScore.value += advancedContext.likeScore;
+        statsContext.totalCommentScore.value += advancedContext.commentScore;
+        statsContext.totalCombinedScore.value += advancedContext.combinedScore;
     }
-    advancedHolder.likeScorePerMedia = advancedHolder.totalLikeScore / advancedFeed.length;
-    advancedHolder.commentScorePerMedia = advancedHolder.totalCommentScore / advancedFeed.length;
-    advancedHolder.combinedScorePerMedia = advancedHolder.totalCombinedScore / advancedFeed.length;
+    statsContext.likeScorePerMedia.value = statsContext.totalLikeScore.value / advancedFeed.length;
+    statsContext.commentScorePerMedia.value = statsContext.totalCommentScore.value / advancedFeed.length;
+    statsContext.combinedScorePerMedia.value = statsContext.totalCombinedScore.value / advancedFeed.length;
 
     return advancedHolder;
 
