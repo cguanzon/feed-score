@@ -28,6 +28,7 @@ angular.module('feedScoreApp')
     $scope.getUserRecent = function(){
         FeedService.getUserMediaRecent().then(function(res){
            $scope.selfMediaRecent = res.data;
+           $scope.selfMediaRecentArray = res.data.mediaArray;
         });
     };
 

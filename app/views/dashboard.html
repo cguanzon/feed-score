@@ -2,23 +2,34 @@
     <div class="row">
         <div class="col-md-4">
             <a ng-click="instagramLogin()"><button class="btn btn-primary">Login to Instagram</button></a>
-
             <h2>{{selfUser.username}}</h2>
             <img ng-src="{{selfUser.profile_picture}}"/>
             <p>Full Name: {{selfUser.full_name}}</p>
             <p>Bio: {{selfUser.bio}}</p>
             <p>Website: {{selfUser.website}}</p>
+        </div>
 
-            <h2>Counts</h2>
+        <div class="col-md-4">
             <p>Media: {{selfUser.counts.media}}</p>
             <p>Followers: {{selfUser.counts.followed_by}}</p>
             <p>Following: {{selfUser.counts.follows}}</p>
         </div>
 
+
+        <div class="col-md-12">
+            <h2>Your Stats Over the Last 20 Days</h2>
+            <p>Total LikeScore: {{selfMediaRecent.totalLikeScore}}</p>
+            <p>Total CommentScore: {{selfMediaRecent.totalCommentScore}}</p>
+            <p>Total CombinedScore: {{selfMediaRecent.totalCombinedScore}}</p>
+            <p>LikesScore per Media: {{selfMediaRecent.likeScorePerMedia}}</p>
+            <p>CommentScore per Media: {{selfMediaRecent.likeScorePerMedia}}</p>
+            <p>CombinedScore per Media: {{selfMediaRecent.combinedScorePerMedia}}</p>
+        </div>
+
         <div class="col-md-8">
             <h2>Your Last 20 Posts</h2>
 
-            <div class="well row" ng-repeat="medium in selfMediaRecent">
+            <div class="well row" ng-repeat="medium in selfMediaRecentArray">
                 <div class="thumbnail col-md-4">
                     <div class="caption">
                         <p>{{medium.caption.text}}</p>

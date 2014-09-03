@@ -39,6 +39,27 @@ exports.handleauth = function(req, res) {
 };
 
 //helper functions
+
+var addAdvancedStats = function(fixedHolder){
+    var advancedHolder = fixedHolder;
+    var advancedFeed = advancedHolder.mediaArray;
+    advancedHolder.totalLikeScore = 0;
+    advancedHolder.totalCommentScore = 0;
+    advancedHolder.totalCombinedScore = 0;
+
+    for(var i=0; i < advancedFeed.length; i++){
+        var advancedContext = advancedFeed[i];
+        advancedHolder.totalLikeScore += advancedContext.likeScore;
+        advancedHolder.totalCommentScore += advancedContext.commentScore;
+        advancedHolder.totalCombinedScore += advancedContext.combinedScore;
+    }
+    advancedHolder.likeScorePerMedia = advancedHolder.totalLikeScore / advancedFeed.length;
+    advancedHolder.commentScorePerMedia = advancedHolder.totalCommentScore / advancedFeed.length;
+    advancedHolder.combinedScorePerMedia = advancedHolder.totalCombinedScore / advancedFeed.length;
+
+    return advancedHolder;
+
+};
 var fixFeed = function(feed){
     var fixedFeed = feed;
     for(var i= 0; i < fixedFeed.length; i++){
@@ -80,7 +101,11 @@ app.get('/user_media_recent', function(req, res){
         if (err) {
             res.send(err);
         } else {
-            res.send(fixFeed(result));
+            var mediaArrayHolder = {
+              mediaArray: result
+            };
+            mediaArrayHolder.mediaArray = fixFeed(mediaArrayHolder.mediaArray);
+            res.send(addAdvancedStats(mediaArrayHolder));
         }
     });
 });
