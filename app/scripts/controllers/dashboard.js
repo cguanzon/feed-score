@@ -28,10 +28,6 @@ angular.module('feedScoreApp')
     $scope.getUserRecent = function(){
         FeedService.getUserMediaRecent().then(function(res){
            $scope.selfMediaRecent = res.data;
-           $scope.selfMediaRecent.stats.likeScorePerFollower =
-            {name: 'LikeScore per Follower',
-             value: $scope.selfMediaRecent.stats.totalLikeScore.value /  $scope.selfUser.counts.followed_by
-            };
            $scope.selfMediaRecentArray = res.data.mediaArray;
         });
     };

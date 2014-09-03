@@ -39,32 +39,6 @@ exports.handleauth = function(req, res) {
 };
 
 //helper functions
-
-var addAdvancedStats = function(fixedHolder){
-    var advancedHolder = fixedHolder;
-    var advancedFeed = advancedHolder.mediaArray;
-    advancedHolder.stats= {
-        totalLikeScore : {name: 'Total Like Score', value: 0},
-        totalCommentScore : {name: 'Total Comment Score', value: 0},
-        totalCombinedScore : {name: 'Total Combined Score', value: 0},
-        likeScorePerMedia : {name: 'LikeScore per Media', value: 0},
-        commentScorePerMedia : {name: 'CommentScore per Media', value: 0},
-        combinedScorePerMedia : {name: 'CombinedScore per Media', value: 0}
-    };
-    var statsContext = advancedHolder.stats;
-    for(var i=0; i < advancedFeed.length; i++){
-        var advancedContext = advancedFeed[i];
-        statsContext.totalLikeScore.value += advancedContext.likeScore;
-        statsContext.totalCommentScore.value += advancedContext.commentScore;
-        statsContext.totalCombinedScore.value += advancedContext.combinedScore;
-    }
-    statsContext.likeScorePerMedia.value = statsContext.totalLikeScore.value / advancedFeed.length;
-    statsContext.commentScorePerMedia.value = statsContext.totalCommentScore.value / advancedFeed.length;
-    statsContext.combinedScorePerMedia.value = statsContext.totalCombinedScore.value / advancedFeed.length;
-
-    return advancedHolder;
-
-};
 var fixFeed = function(feed){
     var fixedFeed = feed;
     for(var i= 0; i < fixedFeed.length; i++){
@@ -82,6 +56,57 @@ var fixFeed = function(feed){
     }
     return fixedFeed;
 };
+
+var addAdvancedStats = function(fixedHolder){
+    var advancedHolder = fixedHolder;
+    var advancedFeed = fixFeed(advancedHolder.mediaArray);
+    advancedHolder.stats= {
+        totalLikeScore : {name: 'Total Like Score', value: 0},
+        totalCommentScore : {name: 'Total Comment Score', value: 0},
+        totalCombinedScore : {name: 'Total Combined Score', value: 0},
+        likeScorePerMedia : {name: 'LikeScore per Media', value: 0},
+        commentScorePerMedia : {name: 'CommentScore per Media', value: 0},
+        combinedScorePerMedia : {name: 'CombinedScore per Media', value: 0},
+        filterStats : {}
+    };
+    var statsContext = advancedHolder.stats;
+    var filterStatsContext = statsContext.filterStats;
+
+    for(var i=0; i < advancedFeed.length; i++){
+        var advancedContext = advancedFeed[i];
+        statsContext.totalLikeScore.value += advancedContext.likeScore;
+        statsContext.totalCommentScore.value += advancedContext.commentScore;
+        statsContext.totalCombinedScore.value += advancedContext.combinedScore;
+        var contextFilter = advancedContext.filter;
+        if (filterStatsContext.hasOwnProperty(contextFilter) ) {
+            filterStatsContext[contextFilter].timesUsed ++;
+            filterStatsContext[contextFilter].totalLikeScoreForFilter += advancedContext.likeScore;
+            filterStatsContext[contextFilter].totalCommentScoreForFilter += advancedContext.commentScore;
+            filterStatsContext[contextFilter].totalCombinedScoreForFilter += advancedContext.combinedScore;
+            filterStatsContext[contextFilter].likeScorePerTimesUsed = filterStatsContext[contextFilter].totalLikeScoreForFilter / filterStatsContext[contextFilter].timesUsed;
+            filterStatsContext[contextFilter].commentScorePerTimesUsed = filterStatsContext[contextFilter].totalCommentScoreForFilter / filterStatsContext[contextFilter].timesUsed;
+            filterStatsContext[contextFilter].combinedScorePerTimesUsed = filterStatsContext[contextFilter].totalCombinedScoreForFilter / filterStatsContext[contextFilter].timesUsed;
+        } else {
+            filterStatsContext[contextFilter] = {
+                timesUsed: 1,
+                totalLikeScoreForFilter: advancedContext.likeScore,
+                totalCommentScoreForFilter: advancedContext.commentScore,
+                totalCombinedScoreForFilter: advancedContext.combinedScore,
+                likeScorePerTimesUsed: advancedContext.likeScore,
+                commentScorePerTimesUsed: advancedContext.commentScore,
+                combinedScorePerTimesUsed: advancedContext.combinedScore
+            };
+        }
+    }
+
+    statsContext.likeScorePerMedia.value = statsContext.totalLikeScore.value / advancedFeed.length;
+    statsContext.commentScorePerMedia.value = statsContext.totalCommentScore.value / advancedFeed.length;
+    statsContext.combinedScorePerMedia.value = statsContext.totalCombinedScore.value / advancedFeed.length;
+
+    return advancedHolder;
+
+};
+
 
 // This is where you would initially send users to authorize
 app.get('/authorize_user', exports.authorize_user);
@@ -109,7 +134,7 @@ app.get('/user_media_recent', function(req, res){
             var mediaArrayHolder = {
               mediaArray: result
             };
-            mediaArrayHolder.mediaArray = fixFeed(mediaArrayHolder.mediaArray);
+            //mediaArrayHolder.mediaArray = fixFeed(mediaArrayHolder.mediaArray);
             res.send(addAdvancedStats(mediaArrayHolder));
         }
     });
