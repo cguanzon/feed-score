@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name feedScoreApp.controller:FeedCtrl
- * @description
- * # FeedCtrl
- * Controller of the feedScoreApp
- */
 angular.module('feedScoreApp')
   .controller('FeedCtrl', function ($scope, $window, FeedService) {
     $scope.awesomeThings = [
@@ -14,11 +7,6 @@ angular.module('feedScoreApp')
       'AngularJS',
       'Karma'
     ];
-
-
-    $scope.instagramLogin = function(){
-        $window.open(FeedService.getAuthorizationUrl());
-    };
 
     $scope.getSelfFeed = function(){
         FeedService.getSelfFeed().then(function(res){
@@ -34,9 +22,6 @@ angular.module('feedScoreApp')
     };
 
     $scope.getSelfUser();
-
-
-
   });
 
 

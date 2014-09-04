@@ -10,14 +10,14 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-api.use({
-    client_id: 'be573c8873f5496caab40ab22f60b895',
-    client_secret: '440cc4c661ee4e8baa158dc4b4198e51'
-});
-
 var redirect_uri = 'http://localhost:8000/handleauth';
+var access_token;
 
 exports.authorize_user = function(req, res) {
+    api.use({
+        client_id: 'be573c8873f5496caab40ab22f60b895',
+        client_secret: '440cc4c661ee4e8baa158dc4b4198e51'
+    });
     res.redirect(api.get_authorization_url(redirect_uri));
 };
 
@@ -27,11 +27,10 @@ exports.handleauth = function(req, res) {
             console.log(err.body);
             res.send("Didn't work");
         } else {
-            console.log('Yay! Access token is ' + result.access_token);
+            access_token = result.access_token;
             api.use({
                 client_id: 'be573c8873f5496caab40ab22f60b895',
                 client_secret: '440cc4c661ee4e8baa158dc4b4198e51',
-                access_token: result.access_token
             });
             res.redirect('http://localhost:9000/#/dashboard');
         }
@@ -115,7 +114,7 @@ app.get('/handleauth', exports.handleauth);
 
 
 app.get('/user', function(req, res){
-
+    api.use({access_token: access_token});
     api.user('self', function(err, result, remaining, limit) {
         if (err) {
             res.send(err);
@@ -127,6 +126,7 @@ app.get('/user', function(req, res){
 });
 
 app.get('/user_media_recent', function(req, res){
+    api.use({access_token: access_token});
     api.user_media_recent('self', function(err, result, pagination, remaining, limit){
         if (err) {
             res.send(err);
@@ -141,6 +141,7 @@ app.get('/user_media_recent', function(req, res){
 });
 
 app.get('/user_self_feed', function(req, res){
+    api.use({access_token: access_token});
     api.user_self_feed(function(err, feed, pagination, remaining, limit){
         if (err) {
             res.send(err);

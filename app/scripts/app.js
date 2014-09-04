@@ -19,13 +19,20 @@ angular
                 controller: 'LoginCtrl'
             })
 
-            .state('feed', {
+            .state('base', {
+                url: '',
+                abstract: true,
+                templateUrl: '/views/base.html',
+                controller: 'BaseCtrl'
+            })
+
+            .state('base.feed', {
                 url: '/feed',
                 templateUrl: '/views/feed.html',
                 controller: 'FeedCtrl'
             })
 
-            .state('dashboard', {
+            .state('base.dashboard', {
                 url: '/dashboard',
                 templateUrl: '/views/dashboard.html',
                 controller: 'DashboardCtrl'

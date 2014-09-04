@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name feedScoreApp.controller:DashboardCtrl
- * @description
- * # DashboardCtrl
- * Controller of the feedScoreApp
- */
 angular.module('feedScoreApp')
   .controller('DashboardCtrl', function ($scope, FeedService) {
     $scope.awesomeThings = [
