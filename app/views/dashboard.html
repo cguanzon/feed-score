@@ -16,10 +16,62 @@
 
 
         <div class="col-md-12">
-            <h2>Your Stats Over the Last 20 Days</h2>
-            <ul>
-                <li ng-repeat="stat in selfMediaRecent.stats">{{stat.name}}: {{stat.value | number: 1}}</li>
-            </ul>
+            <h2>Basic Stats Through Your Last 20 Media Uploads</h2>
+            <div class="col-md-3 well">
+                <p class="text-danger">Like Stats</p>
+                <p>{{selfMediaRecent.stats.totalLikeScore.name}}: {{selfMediaRecent.stats.totalLikeScore.value}}</p>
+                <p>{{selfMediaRecent.stats.likeScorePerMedia.name}}: {{selfMediaRecent.stats.likeScorePerMedia.value}}</p>
+            </div>
+
+            <div class="col-md-3 well">
+                <p class="text-danger">Comment Stats</p>
+                <p>{{selfMediaRecent.stats.totalCommentScore.name}}: {{selfMediaRecent.stats.totalCommentScore.value}}</p>
+                <p>{{selfMediaRecent.stats.commentScorePerMedia.name}}: {{selfMediaRecent.stats.commentScorePerMedia.value}}</p>
+            </div>
+
+            <div class="col-md-3 well">
+                <p class="text-danger">Combined Stats</p>
+                <p>{{selfMediaRecent.stats.totalCombinedScore.name}}: {{selfMediaRecent.stats.totalCombinedScore.value}}</p>
+                <p>{{selfMediaRecent.stats.combinedScorePerMedia.name}}: {{selfMediaRecent.stats.combinedScorePerMedia.value}}</p>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2>Filter Stats Through Your Last 20 Uploads</h2></div>
+                <div class="panel-body">
+                    <p>Listed below are filters that you have used for your last 20 media uploads</p>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Filter</th>
+                            <th class="text-center">Times Used</th>
+                            <th class="text-center">Total Like Score</th>
+                            <th class="text-center">Total Comment Score</th>
+                            <th class="text-center">Total Combined Score</th>
+                            <th class="text-center">Like Score per Times Used</th>
+                            <th class="text-center">Comment Score per Times Used</th>
+                            <th class="text-center">Combined Score per Times Used</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(filter, filterValue) in selfMediaRecent.stats.filterStats">
+                            <td>{{filter}}</td>
+                            <td>{{filterValue.timesUsed}}</td>
+                            <td>{{filterValue.totalLikeScoreForFilter}}</td>
+                            <td>{{filterValue.totalCommentScoreForFilter}}</td>
+                            <td>{{filterValue.totalCombinedScoreForFilter}}</td>
+                            <td>{{filterValue.likeScorePerTimesUsed}}</td>
+                            <td>{{filterValue.commentScorePerTimesUsed}}</td>
+                            <td>{{filterValue.combinedScorePerTimesUsed}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
         <div class="col-md-8">
