@@ -1,21 +1,5 @@
-<div class="container-fluid">
+<div class="container-fluid" cg-busy="promise">
     <div class="row">
-        <!--<div class="col-md-6">-->
-            <!--<a ng-click="instagramLogin()"><button class="btn btn-primary">Login to Instagram</button></a>-->
-
-            <!--<h2>{{selfUser.username}}</h2>-->
-            <!--<img ng-src="{{selfUser.profile_picture}}"/>-->
-            <!--<p>Full Name: {{selfUser.full_name}}</p>-->
-            <!--<p>Bio: {{selfUser.bio}}</p>-->
-            <!--<p>Website: {{selfUser.website}}</p>-->
-        <!--</div>-->
-
-        <!--<div class="col-md-6">-->
-            <!--<h2>Counts</h2>-->
-            <!--<p>Media: {{selfUser.counts.media}}</p>-->
-            <!--<p>Followers: {{selfUser.counts.followed_by}}</p>-->
-            <!--<p>Following: {{selfUser.counts.follows}}</p>-->
-        <!--</div>-->
 
         <div class="col-md-8">
             <h2>Your Feed with Stats</h2>
@@ -34,15 +18,15 @@
                     <p class="text-primary">Stats</p>
                     <p>Comment Count: {{feedItem.comments.count}}</p>
                     <p>Like Count: {{feedItem.likes.count}}</p>
-                    <p class="text-primary"> LikeScore: <span class="text-danger">{{feedItem.likeScore}}</span></p>
-                    <p class="text-primary">CommentScore: <span class="text-danger">{{feedItem.commentScore}}</span></p>
-                    <p class="text-primary">CombinedScore: <span class="text-danger">{{feedItem.combinedScore}}</span></p>
+                    <p class="text-primary"> Likes: <span class="text-danger">{{feedItem.likeScore}}</span></p>
+                    <p class="text-primary">Comments: <span class="text-danger">{{feedItem.commentScore}}</span></p>
+                    <p class="text-primary">Combined: <span class="text-danger">{{feedItem.combinedScore}}</span></p>
                 </div>
 
                 <div class="col-md-4">
                     <p class="text-primary">User Info</p>
                     <img ng-src="{{feedItem.user.profile_picture}}"/>
-                    <p>{{feedItem.user.username}}</p>
+                    <a ng-click="goToUser(feedItem.user.id)"><p>{{feedItem.user.username}}</p></a>
                     <p>{{feedItem.user.full_name}}</p>
                 </div>
 

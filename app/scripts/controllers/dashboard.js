@@ -10,13 +10,13 @@ angular.module('feedScoreApp')
 
 
     $scope.getSelfUser = function(){
-        FeedService.getUser().then(function(res){
+        FeedService.getUser('self').then(function(res){
             $scope.selfUser = res.data;
         });
     };
 
     $scope.getUserRecent = function(){
-        FeedService.getUserMediaRecent().then(function(res){
+        $scope.promise = FeedService.getUserMediaRecent('self').then(function(res){
            $scope.selfMediaRecent = res.data;
            $scope.selfMediaRecentArray = res.data.mediaArray;
         });

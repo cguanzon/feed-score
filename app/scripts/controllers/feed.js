@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('feedScoreApp')
-  .controller('FeedCtrl', function ($scope, $window, FeedService) {
+  .controller('FeedCtrl', function ($state, $scope, $window, FeedService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -9,19 +9,18 @@ angular.module('feedScoreApp')
     ];
 
     $scope.getSelfFeed = function(){
-        FeedService.getSelfFeed().then(function(res){
+        $scope.promise = FeedService.getSelfFeed().then(function(res){
             $scope.selfFeed = res.data;
         });
     };
 
-    $scope.getSelfUser = function(){
-        FeedService.getUser().then(function(res){
-            $scope.selfUser = res.data;
-            $scope.getSelfFeed();
-        });
+    $scope.goToUser = function(userId){
+        $state.go('base.user', { user_id: userId } );
     };
 
-    $scope.getSelfUser();
+    $scope.getSelfFeed();
+
+
   });
 
 

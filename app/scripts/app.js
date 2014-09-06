@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('feedScoreApp', ['ui.router']).config(function ($stateProvider, $urlRouterProvider) {
+  .module('feedScoreApp', ['ui.router', 'cgBusy']).config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/login');
 
         $stateProvider
@@ -36,5 +36,12 @@ angular
                 url: '/dashboard',
                 templateUrl: '/views/dashboard.html',
                 controller: 'DashboardCtrl'
+            })
+
+            .state('base.user', {
+                url: '/user/:user_id',
+                templateUrl: '/views/user.html',
+                controller: 'UserCtrl'
+
             });
     });

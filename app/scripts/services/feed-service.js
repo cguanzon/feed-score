@@ -16,12 +16,12 @@ angular.module('feedScoreApp')
           return authorizationUrl;
         };
 
-        this.getUser = function(){
-            return $http({method: 'GET', url: 'http://localhost:8000/user'});
+        this.getUser = function(userId){
+            return $http({method: 'GET', url: 'http://localhost:8000/user?user_id='+userId});
         };
 
-        this.getUserMediaRecent = function(){
-            return $http({method: 'GET', url: 'http://localhost:8000/user_media_recent'});
+        this.getUserMediaRecent = function(userId){
+            return $http({method: 'GET', url: 'http://localhost:8000/user_media_recent?user_id='+userId});
         };
 
         this.getSelfFeed = function(){
