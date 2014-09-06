@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('feedScoreApp', ['ui.router', 'cgBusy']).config(function ($stateProvider, $urlRouterProvider) {
+  .module('feedScoreApp', ['ui.router', 'cgBusy', 'highcharts-ng']).config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/login');
 
         $stateProvider
