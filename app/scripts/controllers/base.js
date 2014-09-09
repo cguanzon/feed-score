@@ -26,4 +26,8 @@ angular.module('feedScoreApp')
     $scope.goToSearch = function(){
         $state.go('base.search');
     };
+
+    $scope.goToCompare = function(){
+        $state.go('base.compare');
+    };
   });

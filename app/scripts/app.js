@@ -49,5 +49,11 @@ angular
                 url: '/search',
                 templateUrl: '/views/search.html',
                 controller: 'SearchCtrl'
+            })
+
+            .state('base.compare', {
+                url: '/compare',
+                templateUrl: '/views/compare.html',
+                controller: 'CompareCtrl'
             });
     });
