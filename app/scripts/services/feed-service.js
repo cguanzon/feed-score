@@ -17,15 +17,19 @@ angular.module('feedScoreApp')
         };
 
         this.getUser = function(userId){
-            return $http({method: 'GET', url: 'http://localhost:8000/user?user_id='+userId});
+            return $http({method: 'GET', url: 'http://localhost:8000/user?user_id=' + userId});
         };
 
         this.getUserMediaRecent = function(userId){
-            return $http({method: 'GET', url: 'http://localhost:8000/user_media_recent?user_id='+userId});
+            return $http({method: 'GET', url: 'http://localhost:8000/user_media_recent?user_id=' + userId});
         };
 
         this.getSelfFeed = function(){
             return $http({method: 'GET', url: 'http://localhost:8000/user_self_feed'});
+        };
+
+        this.searchForUser = function(searchTerm){
+            return $http({method: 'GET', url: 'http://localhost:8000/user_search?search_string=' + searchTerm});
         };
   });
 

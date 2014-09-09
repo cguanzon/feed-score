@@ -43,5 +43,11 @@ angular
                 templateUrl: '/views/user.html',
                 controller: 'UserCtrl'
 
+            })
+
+            .state('base.search', {
+                url: '/search',
+                templateUrl: '/views/search.html',
+                controller: 'SearchCtrl'
             });
     });

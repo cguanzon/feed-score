@@ -22,4 +22,8 @@ angular.module('feedScoreApp')
     $scope.goToFeed = function(){
         $state.go('base.feed');
     };
+
+    $scope.goToSearch = function(){
+        $state.go('base.search');
+    };
   });
