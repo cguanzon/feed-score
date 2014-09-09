@@ -155,4 +155,16 @@ app.get('/user_self_feed', function(req, res){
     });
 });
 
+app.get('/user_search', function (req, res) {
+    api.use({access_token: access_token});
+    var searchString = req.query.search_string;
+    api.user_search(searchString, function(err, users, limit){
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(users);
+        }
+    });
+});
+
 app.listen(8000);
