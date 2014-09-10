@@ -16,24 +16,14 @@ angular.module('feedScoreApp')
     ];
 
     $scope.searchTerm1 = '';
-    $scope.hasSearched1 = false;
-    $scope.hasSelected1 = false;
+    $scope.hasSearchedButNotSelected1 = false;
+    $scope.canDisplayUser1 = false;
 
     $scope.searchForUser1 = function(){
         FeedService.searchForUser($scope.searchTerm1).then( function (res) {
             $scope.searchResults1 = res.data;
-            $scope.hasSearched1 = true;
-        });
-    };
-
-    $scope.searchTerm2 = '';
-    $scope.hasSearched2 = false;
-    $scope.hasSelected2 = false;
-
-    $scope.searchForUser2 = function(){
-        FeedService.searchForUser($scope.searchTerm2).then( function (res) {
-            $scope.searchResults2 = res.data;
-            $scope.hasSearched2 = true;
+            $scope.canDisplayUser1 = false;
+            $scope.hasSearchedButNotSelected1 = true;
         });
     };
 
@@ -44,7 +34,7 @@ angular.module('feedScoreApp')
     };
 
     $scope.getUserRecent1 = function(userId){
-        $scope.promise = FeedService.getUserMediaRecent(userId).then(function(res){
+        $scope.promise1 = FeedService.getUserMediaRecent(userId).then(function(res){
             $scope.selfMediaRecent1 = res.data;
             console.log($scope.selfMediaRecent1);
             $scope.selfMediaRecentArray1 = res.data.mediaArray;
@@ -52,8 +42,24 @@ angular.module('feedScoreApp')
     };
 
     $scope.getAllInfo1 = function(userId){
+        $scope.hasSearchedButNotSelected1 = false;
+        $scope.canDisplayUser1 = true;
         $scope.getUser1(userId);
         $scope.getUserRecent1(userId);
+    };
+
+    //$scope items for user2
+
+    $scope.searchTerm2 = '';
+    $scope.hasSearchedButNotSelected2 = false;
+    $scope.canDisplayUser2 = false;
+
+    $scope.searchForUser2 = function(){
+        FeedService.searchForUser($scope.searchTerm2).then( function (res) {
+            $scope.searchResults2 = res.data;
+            $scope.canDisplayUser2 = false;
+            $scope.hasSearchedButNotSelected2 = true;
+        });
     };
 
     $scope.getUser2 = function(userId){
@@ -63,9 +69,17 @@ angular.module('feedScoreApp')
     };
 
     $scope.getUserRecent2 = function(userId){
-        $scope.promise = FeedService.getUserMediaRecent(userId).then(function(res){
+        $scope.promise2 = FeedService.getUserMediaRecent(userId).then(function(res){
             $scope.selfMediaRecent2 = res.data;
             $scope.selfMediaRecentArray2 = res.data.mediaArray;
         });
+    };
+
+    $scope.getAllInfo2 = function(userId){
+        $scope.hasSearchedButNotSelected2 = false;
+        $scope.canDisplayUser2 = true;
+        $scope.getUser2(userId);
+        $scope.getUserRecent2(userId);
+        console.log($scope.selfMediaRecent2);
     };
   });
