@@ -21,6 +21,7 @@ angular.module('feedScoreApp')
             $scope.selfMediaRecentArray = res.data.mediaArray;
 
             $scope.likesPerFilterChartData = [];
+            $scope.commentsPerFilterChartData = [];
             for(var key in $scope.selfMediaRecent.stats.filterStats){
                 if ($scope.selfMediaRecent.stats.filterStats.hasOwnProperty(key)){
                     $scope.likesPerFilterChartData.push(
@@ -33,43 +34,74 @@ angular.module('feedScoreApp')
 
                         }
                     );
+                    $scope.commentsPerFilterChartData.push(
+                        {
+                            name: key,
+                            y: $scope.selfMediaRecent.stats.filterStats[key].commentScorePerTimesUsed,
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    )
                 }
             }
-            console.log($scope.likesPerFilterChartData);
-            $scope.chartConfig = {
+
+            var chartTextStyle = {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif',
+                fontWeight: 'bolder',
+                color: 'black'
+            }
+
+            $scope.chartConfig1 = {
+
                 options: {
                     chart: {
                         type: 'column'
                     }
                 },
                 title: {
-                    text: 'Like Per Times Used for Recently Used Filters'
+                    text: 'Like/Comments Per Times Used for Recently Used Filters'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                 },
                 xAxis: {
+                    title: {
+                        text: 'Filter',
+                        style: chartTextStyle
+                    },
                     type: 'category',
                     labels: {
                         rotation: -45,
-                        style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
-                        }
+                        style: chartTextStyle
                     }
                 },
 
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Population (millions)'
+                        text: 'Likes/Comments per Filter',
+                        style: chartTextStyle
                     }
                 },
+                legend: {
+                    align: 'right',
+                    x: -70,
+                    verticalAlign: 'top',
+                    y: 20,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 1,
+                    shadow: false
+                },
                 series: [{
-//                    type: 'pie',
                     name: 'Likes per Times Used',
-//                    innerSize: '50%',
                     data: $scope.likesPerFilterChartData
+                },{
+                    name: 'Comments per Times Used',
+                    data: $scope.commentsPerFilterChartData
                 }]
             };
         });
