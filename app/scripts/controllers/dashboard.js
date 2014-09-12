@@ -39,41 +39,36 @@ angular.module('feedScoreApp')
             $scope.chartConfig = {
                 options: {
                     chart: {
-                        type: 'pie',
-                        plotBackgroundColor: null,
-                        plotBorderWidth: 0,
-                        plotShadow: false
+                        type: 'column'
                     }
                 },
                 title: {
-                    text: 'Filter Stats',
-                    align: 'center',
-                    verticalAlign: 'middle',
-                    y: 25
+                    text: 'Like Per Times Used for Recently Used Filters'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                 },
-                plotOptions: {
-                    pie: {
-                        dataLabels: {
-                            enabled: true,
-                            distance: -50,
-                            style: {
-                                fontWeight: 'bold',
-                                color: 'white',
-                                textShadow: '0px 1px 2px black'
-                            }
-                        },
-                        startAngle: -90,
-                        endAngle: 90,
-                        center: ['50%', '75%']
+                xAxis: {
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Population (millions)'
                     }
                 },
                 series: [{
-                    type: 'pie',
+//                    type: 'pie',
                     name: 'Likes per Times Used',
-                    innerSize: '50%',
+//                    innerSize: '50%',
                     data: $scope.likesPerFilterChartData
                 }]
             };
