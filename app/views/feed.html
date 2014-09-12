@@ -1,37 +1,29 @@
 <div class="container" cg-busy="promise">
     <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
             <h2>Your Feed with Stats</h2>
-
             <div class="well row" ng-repeat="feedItem in selfFeed">
-                <div class="thumbnail col-md-4">
-                    <div class="caption">
-                        <p>{{feedItem.caption.text}}</p>
-                        <p>Time: {{feedItem.caption.created_time | date : 'medium'}}</p>
-                        <p><a target="_blank" ng-href="{{feedItem.link}}" class="label label-danger">Visit</a></p>
-                    </div>
-                    <img ng-src="{{feedItem.images.low_resolution.url}}">
+                <div class="thumbnail col-xs-4">
+                    <a ng-href="{{feedItem.link}}"><img ng-src="{{feedItem.images.low_resolution.url}}"></a>
                 </div>
 
-                <div class="col-md-4 feed-stats">
-                    <p class="text-primary">Stats</p>
-                    <p>Comment Count: {{feedItem.comments.count}}</p>
-                    <p>Like Count: {{feedItem.likes.count}}</p>
+                <div class="col-xs-4 feed-stats">
+                    <p>Time: {{feedItem.caption.created_time | date : 'medium'}}</p>
                     <p class="text-primary"> Likes: <span class="text-danger">{{feedItem.likeScore}}</span></p>
                     <p class="text-primary">Comments: <span class="text-danger">{{feedItem.commentScore}}</span></p>
                     <p class="text-primary">Combined: <span class="text-danger">{{feedItem.combinedScore}}</span></p>
                 </div>
 
-                <div class="col-md-4">
-                    <p class="text-primary">User Info</p>
-                    <img ng-src="{{feedItem.user.profile_picture}}"/>
-                    <a ng-click="goToUser(feedItem.user.id)"><p>{{feedItem.user.username}}</p></a>
-                    <p>{{feedItem.user.full_name}}</p>
+                <div class="col-xs-4 thumbnail">
+                    <a ng-click="goToUser(feedItem.user.id)"><img ng-src="{{feedItem.user.profile_picture}}"/></a>
+                    <a ng-click="goToUser(feedItem.user.id)"><p class="text-center">{{feedItem.user.username}}</p></a>
+                    <p class="text-center">{{feedItem.user.full_name}}</p>
                 </div>
-
             </div>
         </div>
+        <div class="col-xs-1"></div>
     </div>
 </div>
 

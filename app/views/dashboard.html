@@ -16,8 +16,8 @@
                 <p>Media: {{selfUser.counts.media}}</p>
                 <p>Followers: {{selfUser.counts.followed_by}}</p>
                 <p>Following: {{selfUser.counts.follows}}</p>
-                <p>{{selfMediaRecent.stats.totalLikeScore.name}}: {{selfMediaRecent.stats.totalLikeScore.value}}</p>
-                <p>{{selfMediaRecent.stats.likeScorePerMedia.name}}: {{selfMediaRecent.stats.likeScorePerMedia.value}}</p>
+                <p>{{selfMediaRecent.stats.totalLikeScore.name}}: {{selfMediaRecent.stats.totalLikeScore.value | number:1}}</p>
+                <p>{{selfMediaRecent.stats.likeScorePerMedia.name}}: {{selfMediaRecent.stats.likeScorePerMedia.value | number:1}}</p>
             </div>
         </div>
     </div>
@@ -41,17 +41,11 @@
 
             <div class="well col-xs-12 col-sm-6 col-lg-4" ng-repeat="medium in selfMediaRecentArray">
                 <div class="thumbnail col-xs-6">
-                    <div class="caption">
-                        <p>{{medium.caption.text}}</p>
-                        <p>Time: {{medium.caption.created_time | date : 'medium'}}</p>
-                        <p><a target="_blank" ng-href="{{medium.link}}" class="label label-danger">Visit</a></p>
-                    </div>
-                    <img ng-src="{{medium.images.low_resolution.url}}">
+                    <a ng-href="{{medium.link}}"><img ng-src="{{medium.images.low_resolution.url}}"></a>
                 </div>
 
                 <div class="col-xs-6 feed-stats">
-                    <p class="text-primary">Stats</p>
-                    <p>Comment Count: {{medium.comments.count}}</p>
+                    <p>Time: {{medium.caption.created_time | date : 'medium'}}}</p>
                     <p>Like Count: {{medium.likes.count}}</p>
                     <p class="text-primary">Likes: <span class="text-danger">{{medium.likeScore}}</span></p>
                     <p class="text-primary">Comments: <span class="text-danger">{{medium.commentScore}}</span></p>

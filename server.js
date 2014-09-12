@@ -46,7 +46,7 @@ var fixFeed = function(feed){
             var contextCaption = context.caption;
             contextCaption.text =
                     contextCaption.text.length <= 80 ?
-                contextCaption.text : contextCaption.text.substring(0, 79) + ' ...';
+                contextCaption.text : contextCaption.text.substring(0, 19) + ' ...';
             contextCaption.created_time *= 1000;
         }
         context.likeScore = context.likes.count;
