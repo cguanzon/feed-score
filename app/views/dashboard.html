@@ -1,23 +1,25 @@
-<div class="container-fluid" cg-busy="promise">
-    <div class="row">
-        <div class="col-md-2">
+<div class="container" cg-busy="promise">
+    <div class="thumbnail col-xs-12">
+        <div class="col-xs-12 text-center">
             <img ng-src="{{selfUser.profile_picture}}"/>
-        </div>
-
-        <div class="col-md-4">
             <h2>{{selfUser.username}}</h2>
-            <p>Full Name: {{selfUser.full_name}}</p>
-            <p>Bio: {{selfUser.bio}}</p>
-            <p>Website: {{selfUser.website}}</p>
-            <p>Media: {{selfUser.counts.media}}</p>
-            <p>Followers: {{selfUser.counts.followed_by}}</p>
-            <p>Following: {{selfUser.counts.follows}}</p>
         </div>
 
-        <div class="col-md-12">
-            <highchart id="chart1" config="chartConfig" ></highchart>
-        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-6 text-center">
+                <p>Full Name: {{selfUser.full_name}}</p>
+                <p>Bio: {{selfUser.bio}}</p>
+                <p>Website: {{selfUser.website}}</p>
+            </div>
 
+            <div class="col-xs-6 text-center">
+                <p>Media: {{selfUser.counts.media}}</p>
+                <p>Followers: {{selfUser.counts.followed_by}}</p>
+                <p>Following: {{selfUser.counts.follows}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-9">
             <h2>Basic Stats Through Your Last 20 Media Uploads</h2>
             <div class="col-md-4 well">
@@ -40,9 +42,12 @@
         </div>
 
         <div class="col-md-9">
-
             <div class="panel panel-default">
                 <div class="panel-heading"><h2>Filter Stats Through Your Last 20 Uploads</h2></div>
+                <div class="col-md-12">
+                    <highchart id="chart1" config="chartConfig" ></highchart>
+                </div>
+
                 <div class="panel-body">
                     <p>Listed below are filters that you have used for your last 20 media uploads</p>
                 </div>

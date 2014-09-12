@@ -1,5 +1,22 @@
 body {
-    padding-top: 50px;
+    background-color: #f5f5f5;
+}
+
+.nav.nav-tabs{
+    margin-bottom: 4em;
+}
+
+img {
+    padding: 0.5em;
+    border: 0.2em solid blueviolet;
+}
+.jumbotron {
+    background-color: transparent;
+}
+
+.text-info.app-title {
+    text-shadow: darkgrey -0.03em 0.05em;
+    font-weight: bolder;
 }
 
 .thumbnail {
