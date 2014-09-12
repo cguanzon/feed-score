@@ -1,28 +1,27 @@
 <div class="container" cg-busy="promise">
-    <div class="row">
-        <div class="col-xs-4 thumbnail">
+    <div class="thumbnail col-xs-12">
+        <div class="col-xs-12 text-center">
             <img ng-src="{{selfUser.profile_picture}}"/>
+            <h2>{{selfUser.username}}</h2>
         </div>
 
-        <div class="col-xs-8">
-            <div class="col-xs-12"><h2>{{selfUser.username}}</h2></div>
-            <div class="col-xs-6">
+        <div class="col-xs-12">
+            <div class="col-xs-6 text-left">
                 <p>Full Name: {{selfUser.full_name}}</p>
                 <p>Bio: {{selfUser.bio}}</p>
                 <p>Website: {{selfUser.website}}</p>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-6 text-left">
                 <p>Media: {{selfUser.counts.media}}</p>
                 <p>Followers: {{selfUser.counts.followed_by}}</p>
                 <p>Following: {{selfUser.counts.follows}}</p>
             </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="col-md-9">
-            <h2>Basic Stats Through Your Last 20 Media Uploads</h2>
+        <div class="col-md-12">
+            <h2>Basic Stats for The Last 20 Posts</h2>
             <div class="col-md-4 well">
                 <p class="text-danger">Like Stats</p>
                 <p>{{selfMediaRecent.stats.totalLikeScore.name}}: {{selfMediaRecent.stats.totalLikeScore.value}}</p>
@@ -42,46 +41,20 @@
             </div>
         </div>
 
-        <div class="col-md-9">
-
+        <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h2>Filter Stats Through Your Last 20 Uploads</h2></div>
-                <div class="panel-body">
-                    <p>Listed below are filters that you have used for your last 20 media uploads</p>
+                <div class="panel-heading"><h2>Filter Stats for the Last 20 Posts</h2></div>
+                <div class="jumbotron">
+                    <highchart id="chart1" config="chartConfig1" ></highchart>
                 </div>
-
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th class="text-center">Filter</th>
-                        <th class="text-center">Times Used</th>
-                        <th class="text-center">Total Likes</th>
-                        <th class="text-center">Total Comments</th>
-                        <th class="text-center">Total Combined</th>
-                        <th class="text-center">Likes per Times Used</th>
-                        <th class="text-center">Comments per Times Used</th>
-                        <th class="text-center">Combined per Times Used</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="(filter, filterValue) in selfMediaRecent.stats.filterStats">
-                        <td>{{filter}}</td>
-                        <td>{{filterValue.timesUsed}}</td>
-                        <td>{{filterValue.totalLikeScoreForFilter}}</td>
-                        <td>{{filterValue.totalCommentScoreForFilter}}</td>
-                        <td>{{filterValue.totalCombinedScoreForFilter}}</td>
-                        <td>{{filterValue.likeScorePerTimesUsed}}</td>
-                        <td>{{filterValue.commentScorePerTimesUsed}}</td>
-                        <td>{{filterValue.combinedScorePerTimesUsed}}</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="jumbotron">
+                    <highchart id="chart2" config="chartConfig2" ></highchart>
+                </div>
             </div>
-
         </div>
 
         <div class="col-md-8">
-            <h2>Your Last 20 Posts</h2>
+            <h2>Last 20 Posts</h2>
 
             <div class="well row" ng-repeat="medium in selfMediaRecentArray">
                 <div class="thumbnail col-md-4">
