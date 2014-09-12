@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <h2>Basic Stats Through Your Last 20 Media Uploads</h2>
             <div class="col-md-4 well">
                 <p class="text-danger">Like Stats</p>
@@ -44,40 +44,12 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading"><h2>Filter Stats Through Your Last 20 Uploads</h2></div>
-                <div class="col-md-12">
+                <div class="jumbotron">
                     <highchart id="chart1" config="chartConfig1" ></highchart>
                 </div>
-
-                <div class="panel-body">
-                    <p>Listed below are filters that you have used for your last 20 media uploads</p>
+                <div class="jumbotron">
+                    <highchart id="chart2" config="chartConfig2" ></highchart>
                 </div>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Filter</th>
-                            <th class="text-center">Times Used</th>
-                            <th class="text-center">Total Likes</th>
-                            <th class="text-center">Total Comments</th>
-                            <th class="text-center">Total Combined</th>
-                            <th class="text-center">Likes per Times Used</th>
-                            <th class="text-center">Comments per Times Used</th>
-                            <th class="text-center">Combined per Times Used</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="(filter, filterValue) in selfMediaRecent.stats.filterStats">
-                            <td>{{filter}}</td>
-                            <td>{{filterValue.timesUsed}}</td>
-                            <td>{{filterValue.totalLikeScoreForFilter}}</td>
-                            <td>{{filterValue.totalCommentScoreForFilter}}</td>
-                            <td>{{filterValue.totalCombinedScoreForFilter}}</td>
-                            <td>{{filterValue.likeScorePerTimesUsed}}</td>
-                            <td>{{filterValue.commentScorePerTimesUsed}}</td>
-                            <td>{{filterValue.combinedScorePerTimesUsed}}</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
 
         </div>

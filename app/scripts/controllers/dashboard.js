@@ -22,6 +22,7 @@ angular.module('feedScoreApp')
 
             $scope.likesPerFilterChartData = [];
             $scope.commentsPerFilterChartData = [];
+            $scope.timesUsedPerFilterChartData = [];
             for(var key in $scope.selfMediaRecent.stats.filterStats){
                 if ($scope.selfMediaRecent.stats.filterStats.hasOwnProperty(key)){
                     $scope.likesPerFilterChartData.push(
@@ -42,7 +43,17 @@ angular.module('feedScoreApp')
                                 enabled: true
                             }
                         }
+                    );
+                    $scope.timesUsedPerFilterChartData.push(
+                        {
+                            name: key,
+                            y: $scope.selfMediaRecent.stats.filterStats[key].timesUsed,
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
                     )
+
                 }
             }
 
@@ -102,6 +113,46 @@ angular.module('feedScoreApp')
                 },{
                     name: 'Comments per Times Used',
                     data: $scope.commentsPerFilterChartData
+                }]
+            };
+
+            $scope.chartConfig2 = {
+
+                options: {
+                    chart: {
+                        type: 'pie',
+                        plotBackgroundColor: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    }
+                },
+                title: {
+                    text: 'Amount of Times Used per Filter'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        dataLabels: {
+                            enabled: true,
+                            distance: -50,
+                            style: {
+                                fontWeight: 'bold',
+                                color: 'white',
+                                textShadow: '0px 1px 2px black'
+                            }
+                        },
+                        startAngle: -90,
+                        endAngle: 90,
+                        center: ['50%', '75%']
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Times Used',
+                    innerSize: '30%',
+                    data: $scope.timesUsedPerFilterChartData
                 }]
             };
         });
