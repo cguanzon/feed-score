@@ -1,11 +1,11 @@
 <div class="container" cg-busy="promise">
     <div class="thumbnail col-xs-12">
-        <div class="col-xs-12 text-center">
+        <div class="col-xs-12 col-sm-4 text-center">
             <img ng-src="{{selfUser.profile_picture}}"/>
             <h2>{{selfUser.username}}</h2>
         </div>
 
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-sm-8">
             <div class="col-xs-6 text-left">
                 <p>Full Name: {{selfUser.full_name}}</p>
                 <p>Bio: {{selfUser.bio}}</p>
@@ -16,48 +16,31 @@
                 <p>Media: {{selfUser.counts.media}}</p>
                 <p>Followers: {{selfUser.counts.followed_by}}</p>
                 <p>Following: {{selfUser.counts.follows}}</p>
+                <p>{{selfMediaRecent.stats.totalLikeScore.name}}: {{selfMediaRecent.stats.totalLikeScore.value}}</p>
+                <p>{{selfMediaRecent.stats.likeScorePerMedia.name}}: {{selfMediaRecent.stats.likeScorePerMedia.value}}</p>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <h2>Basic Stats for The Last 20 Posts</h2>
-            <div class="col-md-4 well">
-                <p class="text-danger">Like Stats</p>
-                <p>{{selfMediaRecent.stats.totalLikeScore.name}}: {{selfMediaRecent.stats.totalLikeScore.value}}</p>
-                <p>{{selfMediaRecent.stats.likeScorePerMedia.name}}: {{selfMediaRecent.stats.likeScorePerMedia.value}}</p>
-            </div>
-
-            <div class="col-md-4 well">
-                <p class="text-danger">Comment Stats</p>
-                <p>{{selfMediaRecent.stats.totalCommentScore.name}}: {{selfMediaRecent.stats.totalCommentScore.value}}</p>
-                <p>{{selfMediaRecent.stats.commentScorePerMedia.name}}: {{selfMediaRecent.stats.commentScorePerMedia.value}}</p>
-            </div>
-
-            <div class="col-md-4 well">
-                <p class="text-danger">Combined Stats</p>
-                <p>{{selfMediaRecent.stats.totalCombinedScore.name}}: {{selfMediaRecent.stats.totalCombinedScore.value}}</p>
-                <p>{{selfMediaRecent.stats.combinedScorePerMedia.name}}: {{selfMediaRecent.stats.combinedScorePerMedia.value}}</p>
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h2>Filter Stats for the Last 20 Posts</h2></div>
-                <div class="jumbotron">
-                    <highchart id="chart1" config="chartConfig1" ></highchart>
-                </div>
-                <div class="jumbotron">
-                    <highchart id="chart2" config="chartConfig2" ></highchart>
+        <div class="col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading"><h2>Filter Stats</h2></div>
+                    <div class="panel-body">
+                        <div class="col-xs-12 col-sm-6 jumbotron">
+                            <highchart id="chart1" config="chartConfig1" ></highchart>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 jumbotron">
+                            <highchart id="chart2" config="chartConfig2" ></highchart>
+                        </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-xs-12">
             <h2>Last 20 Posts</h2>
 
-            <div class="well row" ng-repeat="medium in selfMediaRecentArray">
-                <div class="thumbnail col-md-4">
+            <div class="well col-xs-12 col-sm-6 col-lg-4" ng-repeat="medium in selfMediaRecentArray">
+                <div class="thumbnail col-xs-6">
                     <div class="caption">
                         <p>{{medium.caption.text}}</p>
                         <p>Time: {{medium.caption.created_time | date : 'medium'}}</p>
@@ -66,13 +49,13 @@
                     <img ng-src="{{medium.images.low_resolution.url}}">
                 </div>
 
-                <div class="col-md-8 feed-stats">
+                <div class="col-xs-6 feed-stats">
                     <p class="text-primary">Stats</p>
                     <p>Comment Count: {{medium.comments.count}}</p>
                     <p>Like Count: {{medium.likes.count}}</p>
-                    <p class="text-primary"> LikeScore: <span class="text-danger">{{medium.likeScore}}</span></p>
-                    <p class="text-primary">CommentScore: <span class="text-danger">{{medium.commentScore}}</span></p>
-                    <p class="text-primary">CombinedScore: <span class="text-danger">{{medium.combinedScore}}</span></p>
+                    <p class="text-primary">Likes: <span class="text-danger">{{medium.likeScore}}</span></p>
+                    <p class="text-primary">Comments: <span class="text-danger">{{medium.commentScore}}</span></p>
+                    <p class="text-primary">Combined: <span class="text-danger">{{medium.combinedScore}}</span></p>
                 </div>
             </div>
         </div>

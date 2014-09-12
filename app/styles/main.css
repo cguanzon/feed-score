@@ -3,12 +3,12 @@ body {
 }
 
 .nav.nav-tabs{
-    margin-bottom: 4em;
+    margin-bottom: 1em;
 }
 
 img {
     padding: 0.5em;
-    border: 0.2em solid blueviolet;
+    border: 0.2em solid darkgrey;
 }
 .jumbotron {
     background-color: transparent;
