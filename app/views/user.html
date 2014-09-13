@@ -1,11 +1,11 @@
 <div class="container" cg-busy="promise">
-    <div class="thumbnail col-xs-12">
-        <div class="col-xs-12 col-sm-4 text-center">
-            <img ng-src="{{selfUser.profile_picture}}"/>
-            <h2>{{selfUser.username}}</h2>
+    <div class="col-xs-12 panel panel-info">
+        <div class="col-xs-12 col-sm-4">
+            <img class="img-responsive " ng-src="{{selfUser.profile_picture}}"/>
+            <h2 class="text-info">{{selfUser.username}}</h2>
         </div>
 
-        <div class="col-xs-12 col-sm-8">
+        <div class="col-xs-12 col-sm-8 user-info">
             <div class="col-xs-6 text-left">
                 <p>Full Name: {{selfUser.full_name}}</p>
                 <p>Bio: {{selfUser.bio}}</p>
@@ -26,10 +26,10 @@
             <div class="panel panel-info">
                 <div class="panel-heading"><h2>Filter Stats</h2></div>
                 <div class="panel-body">
-                    <div class="col-xs-12 col-sm-6 jumbotron">
+                    <div class="col-xs-12 col-sm-6 panel panel-primary">
                         <highchart id="chart1" config="chartConfig1" ></highchart>
                     </div>
-                    <div class="col-xs-12 col-sm-6 jumbotron">
+                    <div class="col-xs-12 col-sm-6 panel panel-primary">
                         <highchart id="chart2" config="chartConfig2" ></highchart>
                     </div>
                 </div>
@@ -37,19 +37,23 @@
         </div>
 
         <div class="col-xs-12">
-            <h2>Last 20 Posts</h2>
+            <div class="panel panel-info">
+                <div class="panel-heading"><h2>Last 20 Posts</h2></div>
+                <div class="panel-body">
+                    <div class="feed-item col-xs-12 col-sm-6 col-lg-4" ng-repeat="medium in selfMediaRecentArray">
+                        <div class="col-xs-6">
+                            <a ng-href="{{medium.link}}"><img class="img-thumbnail" ng-src="{{medium.images.low_resolution.url}}"></a>
+                        </div>
 
-            <div class="well col-xs-12 col-sm-6 col-lg-4" ng-repeat="medium in selfMediaRecentArray">
-                <div class="thumbnail col-xs-6">
-                    <a ng-href="{{medium.link}}"><img ng-src="{{medium.images.low_resolution.url}}"></a>
-                </div>
-
-                <div class="col-xs-6 feed-stats">
-                    <p>Time: {{medium.caption.created_time | date : 'medium'}}}</p>
-                    <p>Like Count: {{medium.likes.count}}</p>
-                    <p class="text-primary">Likes: <span class="text-danger">{{medium.likeScore}}</span></p>
-                    <p class="text-primary">Comments: <span class="text-danger">{{medium.commentScore}}</span></p>
-                    <p class="text-primary">Combined: <span class="text-danger">{{medium.combinedScore}}</span></p>
+                        <div class="col-xs-6 feed-stats">
+                            <p class="text-primary">Filter: <span class="text-danger">{{medium.filter}}</span></p>
+                            <p class="text-primary">Time: <span class="text-danger">{{medium.caption.created_time | date : 'EEE d-MM-yy'}}</span>
+                            <p class="text-primary">Like Count: <span class="text-danger">{{medium.likes.count}}</span></p>
+                            <p class="text-primary">Likes: <span class="text-danger">{{medium.likeScore}}</span></p>
+                            <p class="text-primary">Comments: <span class="text-danger">{{medium.commentScore}}</span></p>
+                            <p class="text-primary">Combined: <span class="text-danger">{{medium.combinedScore}}</span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

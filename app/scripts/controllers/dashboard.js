@@ -31,7 +31,7 @@ angular.module('feedScoreApp')
                         $scope.likesPerFilterChartData.push(
                             {
                                 name: key,
-                                y: $scope.selfMediaRecent.stats.filterStats[key].likeScorePerTimesUsed,
+                                y: Math.round($scope.selfMediaRecent.stats.filterStats[key].likeScorePerTimesUsed*10)/10,
                                 dataLabels: {
                                     enabled: true
                                 }
@@ -41,7 +41,7 @@ angular.module('feedScoreApp')
                         $scope.commentsPerFilterChartData.push(
                             {
                                 name: key,
-                                y: $scope.selfMediaRecent.stats.filterStats[key].commentScorePerTimesUsed,
+                                y: Math.round($scope.selfMediaRecent.stats.filterStats[key].commentScorePerTimesUsed*10)/10,
                                 dataLabels: {
                                     enabled: true
                                 }
@@ -78,7 +78,7 @@ angular.module('feedScoreApp')
                         text: 'Like/Comments Per Times Used for Recently Used Filters'
                     },
                     tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        pointFormat: '{series.name}: {point.y:.2f}'
                     },
                     xAxis: {
                         title: {
