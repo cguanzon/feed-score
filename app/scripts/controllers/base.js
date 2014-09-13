@@ -8,7 +8,7 @@
  * Controller of the feedScoreApp
  */
 angular.module('feedScoreApp')
-  .controller('BaseCtrl', function ($scope, $state) {
+  .controller('BaseCtrl', function ($location, $scope, $state) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -30,4 +30,9 @@ angular.module('feedScoreApp')
     $scope.goToCompare = function(){
         $state.go('base.compare');
     };
+
+    $scope.isActive = function(route){
+        return route === $location.path();
+    };
+
   });

@@ -3,10 +3,10 @@
 </div>
 
 <ul class="nav nav-tabs" role="tablist">
-    <li><a ng-click="goToDashboard()">Home</a></li>
-    <li><a ng-click="goToFeed()">Feed</a></li>
-    <li><a ng-click="goToSearch()">Search</a></li>
-    <li><a ng-click="goToCompare()">Compare</a></li>
+    <li ng-class="{active:isActive('/dashboard')}"><a ng-click="goToDashboard()">Home</a></li>
+    <li ng-class="{active:isActive('/feed')}"><a ng-click="goToFeed()">Feed</a></li>
+    <li ng-class="{active:isActive('/search')}"><a ng-click="goToSearch()">Search</a></li>
+    <li ng-class="{active:isActive('/compare')}"><a ng-click="goToCompare()">Compare</a></li>
 </ul>
 
 <div ui-view></div>
