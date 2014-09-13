@@ -16,13 +16,10 @@ angular.module('feedScoreApp')
     ];
 
     $scope.userId = $stateParams.user_id;
-    console.log($stateParams);
-    console.log($scope.userId);
 
     $scope.getUser = function(){
         FeedService.getUser($scope.userId).then(function(res){
             $scope.selfUser = res.data;
-            console.log($scope.selfUser);
         });
     };
 
