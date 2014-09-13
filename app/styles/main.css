@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom, #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%);
+    background-color: #f5f5f5;
 }
 
 img {
@@ -34,6 +34,13 @@ img:hover {
     font-weight: bolder;
 }
 
+.search-result.thumbnail.col-sm-4 {
+    min-height: 16em;
+    border: none;
+    border-bottom: 0.1em solid lightgray;
+    margin: 0 0;
+    overflow: hidden;
+}
 #custom-search-form {
     margin:0;
     margin-top: 5px;

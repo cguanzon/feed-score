@@ -71,7 +71,10 @@ angular.module('feedScoreApp')
 
                     options: {
                         chart: {
-                            type: 'column'
+                            type: 'column',
+                            animation: {
+                                duration: 2000
+                            }
                         }
                     },
                     title: {
@@ -126,7 +129,10 @@ angular.module('feedScoreApp')
                             type: 'pie',
                             plotBackgroundColor: null,
                             plotBorderWidth: 0,
-                            plotShadow: false
+                            plotShadow: false,
+                            animation: {
+                                duration: 900
+                            }
                         }
                     },
                     title: {

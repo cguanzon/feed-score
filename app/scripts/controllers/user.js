@@ -82,14 +82,17 @@ angular.module('feedScoreApp')
 
                     options: {
                         chart: {
-                            type: 'column'
+                            type: 'column',
+                            animation: {
+                                duration: 2000
+                            }
                         }
                     },
                     title: {
                         text: 'Like/Comments Per Times Used for Recently Used Filters'
                     },
                     tooltip: {
-                        pointFormat: "{series.name}: {point.y:.2f}"
+                        pointFormat: '{series.name}: {point.y:.2f}'
                     },
                     xAxis: {
                         title: {
@@ -137,7 +140,10 @@ angular.module('feedScoreApp')
                             type: 'pie',
                             plotBackgroundColor: null,
                             plotBorderWidth: 0,
-                            plotShadow: false
+                            plotShadow: false,
+                            animation: {
+                                duration: 900
+                            }
                         }
                     },
                     title: {

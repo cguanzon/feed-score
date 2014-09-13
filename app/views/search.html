@@ -1,27 +1,28 @@
-<h1>Search for a User</h1>
-<div class="row">
-    <div class="col-md-12">
-        <form id="custom-search-form" class="form-search form-horizontal" ng-submit="searchForUser()">
-            <div class="input-append col-md-12">
-                <input ng-model="searchTerm" type="text" class="search-query mac-style" placeholder="Search">
-                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div ng-show="hasSearched" class="row search-results">
-    <h2>Search results for {{searchTerm}}</h2>
-    <div class="col-md-3 search-result" ng-repeat="searchResult in searchResults">
-        <div class="col-md-4">
-            <img ng-src="{{searchResult.profile_picture}}"/>
+<div class="container">
+    <h1>Search for a User</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <form id="custom-search-form" class="form-search form-horizontal" ng-submit="searchForUser()">
+                <div class="input-append col-md-12">
+                    <input ng-model="searchTerm" type="text" class="search-query mac-style" placeholder="Search">
+                    <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <div class="col-md-8">
-            <h2><a ng-click="goToUser(searchResult.id)">{{searchResult.username}}</a></h2>
-            <p>Full Name: {{searchResult.full_name}}</p>
-            <p>Bio: {{searchResult.bio}}</p>
-            <p>Website: {{searchResult.website}}</p>
+    <div ng-show="hasSearched" class="col-xs-12 search-results">
+        <h2>Search results for {{searchTerm}}</h2>
+        <div class="col-sm-4 thumbnail search-result" ng-repeat="searchResult in searchResults">
+            <div class="col-sm-4">
+                <a ng-click="goToUser(searchResult.id)"><img class="img-responsive" ng-src="{{searchResult.profile_picture}}"/></a>
+            </div>
+
+            <div class="col-sm-8">
+                <h2><a ng-click="goToUser(searchResult.id)">{{searchResult.username}}</a></h2>
+                <p>Full Name: {{searchResult.full_name}}</p>
+                <p>Website: {{searchResult.website}}</p>
+            </div>
         </div>
     </div>
 </div>
