@@ -60,6 +60,5 @@ angular
 
     .value('cgBusyDefaults',{
         message:'instAlyzing',
-        delay: 300,
-        minDuration: 700
+        templateUrl: '/views/loading.html'
     });
