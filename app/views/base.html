@@ -1,12 +1,11 @@
-<div class="page-header">
-    <h1 class="text-center"><span class="text-primary app-title">inst<span class="text-danger">A</span>lyzer</span></h1>
+<div>
+    <h1 class="text-center"><span class="text-primary app-title">post<span class="text-danger">A</span>lyzer</span></h1>
+    <ul class="nav nav-tabs" role="tablist">
+        <li ng-class="{active:isActive('/dashboard')}"><a ng-click="goToDashboard()">Home</a></li>
+        <li ng-class="{active:isActive('/feed')}"><a ng-click="goToFeed()">Feed</a></li>
+        <li ng-class="{active:isActive('/search')}"><a ng-click="goToSearch()">Search</a></li>
+        <li ng-class="{active:isActive('/compare')}"><a ng-click="goToCompare()">Compare</a></li>
+    </ul>
 </div>
-
-<ul class="nav nav-tabs" role="tablist">
-    <li ng-class="{active:isActive('/dashboard')}"><a ng-click="goToDashboard()">Home</a></li>
-    <li ng-class="{active:isActive('/feed')}"><a ng-click="goToFeed()">Feed</a></li>
-    <li ng-class="{active:isActive('/search')}"><a ng-click="goToSearch()">Search</a></li>
-    <li ng-class="{active:isActive('/compare')}"><a ng-click="goToCompare()">Compare</a></li>
-</ul>
 
 <div ui-view></div>
