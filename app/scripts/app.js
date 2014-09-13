@@ -56,4 +56,10 @@ angular
                 templateUrl: '/views/compare.html',
                 controller: 'CompareCtrl'
             });
+    })
+
+    .value('cgBusyDefaults',{
+        message:'instAlyzing',
+        delay: 300,
+        minDuration: 700
     });
