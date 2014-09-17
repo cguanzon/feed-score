@@ -1,22 +1,21 @@
 <div class="container-fluid" cg-busy="promise">
     <div class="col-xs-12 col-md-3 user-info">
         <div class="col-xs-12">
-            <img class="user-image" ng-src="{{selfUser.profile_picture}}"/>
-            <p class="text-info"><b>{{selfUser.username}}</b></p>
+            <img class="img-responsive user-image center-block" ng-src="{{selfUser.profile_picture}}"/>
+            <p class="text-info text-center"><b>{{selfUser.username}}</b></p>
         </div>
 
         <div class="col-xs-12 text-left">
-            <p><span class="text-info">Full Name:</span> {{selfUser.full_name}}</p>
-            <p><span class="text-info">Bio:</span> {{selfUser.bio}}</p>
-            <p><span class="text-info">Website:</span> <a ng-href="{{selfUser.website}}">{{selfUser.website}}</a></p>
-        </div>
-
-        <div class="col-xs-12 text-left">
-            <p><span class="text-info">Media:</span> <span class="text-danger">{{selfUser.counts.media}}</span></p>
-            <p><span class="text-info">Followers:</span> <span class="text-danger">{{selfUser.counts.followed_by}}</span></p>
-            <p><span class="text-info">Following:</span> <span class="text-danger">{{selfUser.counts.follows}}</span></p>
-            <p><span class="text-info">{{selfMediaRecent.stats.likeScorePerMedia.name}}:</span> <span class="text-danger">{{selfMediaRecent.stats.likeScorePerMedia.value | number:1}}</span></p>
-            <p><span class="text-info">{{selfMediaRecent.stats.commentScorePerMedia.name}}:</span> <span class="text-danger">{{selfMediaRecent.stats.commentScorePerMedia.value | number:1}}</span></p>
+            <ul class="list-group basic-stats">
+                <li class="list-group-item"><span class="text-info">Full Name:</span> {{selfUser.full_name}}</li>
+                <li class="list-group-item"><span class="text-info">Bio:</span> {{selfUser.bio}}</li>
+                <li class="list-group-item"><span class="text-info">Website:</span> <a ng-href="{{selfUser.website}}">{{selfUser.website}}</a></li>
+                <li class="list-group-item"><span class="text-info">Posts:</span> <span class="badge alert-info"><b>{{selfUser.counts.media | number:0}}</b></span></li>
+                <li class="list-group-item"><span class="text-info">Followers:</span> <span class="badge alert-info"><b>{{selfUser.counts.followed_by | number:0}}</b></span></li>
+                <li class="list-group-item"><span class="text-info">Following:</span> <span class="badge alert-info"><b>{{selfUser.counts.follows | number:0}}</b></span></li>
+                <li class="list-group-item"><span class="text-info">{{selfMediaRecent.stats.likeScorePerMedia.name}}:</span> <span class="badge alert-info"><b>{{selfMediaRecent.stats.likeScorePerMedia.value | number:1}}</b></span></li>
+                <li class="list-group-item"><span class="text-info">{{selfMediaRecent.stats.commentScorePerMedia.name}}:</span> <span class="badge alert-info"><b>{{selfMediaRecent.stats.commentScorePerMedia.value | number:1}}</b></span></li>
+            </ul>
         </div>
     </div>
     <div class="col-xs-12 col-md-9 pull-right graphs">

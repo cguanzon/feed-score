@@ -13,9 +13,19 @@ img:hover {
     transform: scale(1.04, 1.04);
 }
 
-img.user-image {
-    height: 4em;
-    width: 4em;
+img.user-image.img-responsive {
+    max-height: 4em;
+    max-width: 4em;
+}
+
+.center-block {
+    margin: 0 auto;
+}
+
+.list-group-item {
+    margin: 0 0;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 .feed-item {
@@ -26,6 +36,7 @@ img.user-image {
 .user-info {
     border: 0.25em solid #9954bb;
     margin: 0 auto 1em auto;
+    padding: 0.5em 0;
 }
 
 .nav.nav-tabs{
@@ -90,3 +101,4 @@ img.user-image {
 .search-query:focus{
     width: 260px;
 }
+

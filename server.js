@@ -63,9 +63,9 @@ var addAdvancedStats = function(fixedHolder){
         totalLikeScore : {name: 'Total Likes', value: 0},
         totalCommentScore : {name: 'Total Comments', value: 0},
         totalCombinedScore : {name: 'Total Combined', value: 0},
-        likeScorePerMedia : {name: 'Likes per Media', value: 0},
-        commentScorePerMedia : {name: 'Comments per Media', value: 0},
-        combinedScorePerMedia : {name: 'Combined per Media', value: 0},
+        likeScorePerMedia : {name: 'Likes per Post', value: 0},
+        commentScorePerMedia : {name: 'Comments per Post', value: 0},
+        combinedScorePerMedia : {name: 'Combined per Post', value: 0},
         filterStats : {}
     };
     var statsContext = advancedHolder.stats;

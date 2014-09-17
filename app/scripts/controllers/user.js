@@ -84,6 +84,10 @@ angular.module('feedScoreApp')
                                 duration: 2000
                             }
                         },
+                        colors: [
+                            '#00C924',
+                            '#C900A5'
+                        ],
                         title: {
                             text: 'Like/Comments Per Times Used for Recently Used Filters'
                         },
@@ -143,6 +147,14 @@ angular.module('feedScoreApp')
                                 duration: 900
                             }
                         },
+                        colors: [
+                            '#00C924',
+                            '#ED114F',
+                            '#FADF11',
+                            '#FA6B11',
+                            '#11FAF6',
+                            '#1167FA'
+                        ],
                         title: {
                             text: 'Amount of Times Used per Filter'
                         },
