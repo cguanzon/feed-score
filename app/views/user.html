@@ -1,61 +1,57 @@
 <div class="container-fluid" cg-busy="promise">
-    <div class="col-xs-12">
-        <div class="col-xs-12 col-sm-2">
+    <div class="col-xs-12 col-md-3 user-info">
+        <div class="col-xs-12">
             <img class="user-image" ng-src="{{selfUser.profile_picture}}"/>
-            <p class="text-info">{{selfUser.username}}</p>
+            <p class="text-info"><b>{{selfUser.username}}</b></p>
         </div>
 
-        <div class="col-xs-12 col-sm-8 user-info">
-            <div class="col-xs-6 text-left">
-                <p>Full Name: {{selfUser.full_name}}</p>
-                <p>Bio: {{selfUser.bio}}</p>
-                <p>Website: {{selfUser.website}}</p>
-            </div>
+        <div class="col-xs-12 text-left">
+            <p><span class="text-info">Full Name:</span> {{selfUser.full_name}}</p>
+            <p><span class="text-info">Bio:</span> {{selfUser.bio}}</p>
+            <p><span class="text-info">Website:</span> <a ng-href="{{selfUser.website}}">{{selfUser.website}}</a></p>
+        </div>
 
-            <div class="col-xs-6 text-left">
-                <p><span class="text-primary">Media:</span> <span class="text-danger">{{selfUser.counts.media}}</span></p>
-                <p><span class="text-primary">Followers:</span> <span class="text-danger">{{selfUser.counts.followed_by}}</span></p>
-                <p><span class="text-primary">Following:</span> <span class="text-danger">{{selfUser.counts.follows}}</span></p>
-                <p><span class="text-primary">{{selfMediaRecent.stats.likeScorePerMedia.name}}:</span> <span class="text-danger">{{selfMediaRecent.stats.likeScorePerMedia.value | number:1}}</span></p>
-                <p><span class="text-primary">{{selfMediaRecent.stats.commentScorePerMedia.name}}:</span> <span class="text-danger">{{selfMediaRecent.stats.commentScorePerMedia.value | number:1}}</span></p>
+        <div class="col-xs-12 text-left">
+            <p><span class="text-info">Media:</span> <span class="text-danger">{{selfUser.counts.media}}</span></p>
+            <p><span class="text-info">Followers:</span> <span class="text-danger">{{selfUser.counts.followed_by}}</span></p>
+            <p><span class="text-info">Following:</span> <span class="text-danger">{{selfUser.counts.follows}}</span></p>
+            <p><span class="text-info">{{selfMediaRecent.stats.likeScorePerMedia.name}}:</span> <span class="text-danger">{{selfMediaRecent.stats.likeScorePerMedia.value | number:1}}</span></p>
+            <p><span class="text-info">{{selfMediaRecent.stats.commentScorePerMedia.name}}:</span> <span class="text-danger">{{selfMediaRecent.stats.commentScorePerMedia.value | number:1}}</span></p>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-9 pull-right graphs">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h2>Filter Stats</h2></div>
+            <div class="panel-body">
+                <div class="col-xs-12 col-lg-6 panel panel-primary">
+                    <highchart id="chart1" config="chartConfig1" ></highchart>
+                </div>
+                <div class="col-xs-12 col-lg-6 panel panel-primary">
+                    <highchart id="chart2" config="chartConfig2" ></highchart>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="panel panel-info">
-                <div class="panel-heading"><h2>Filter Stats</h2></div>
-                <div class="panel-body">
-                    <div class="col-xs-12 col-lg-6 panel panel-primary">
-                        <highchart id="chart1" config="chartConfig1" ></highchart>
+
+    <div class="col-xs-12 col-sm-9 pull-right user-feed">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h2>Last 20 Posts</h2></div>
+            <div class="panel-body">
+                <div class="feed-item col-xs-12 col-sm-6 col-lg-4" ng-repeat="medium in selfMediaRecentArray">
+                    <div class="col-xs-6">
+                        <a ng-href="{{medium.link}}"><img class="img-thumbnail" ng-src="{{medium.images.low_resolution.url}}"></a>
                     </div>
-                    <div class="col-xs-12 col-lg-6 panel panel-primary">
-                        <highchart id="chart2" config="chartConfig2" ></highchart>
+
+                    <div class="col-xs-6 feed-stats">
+                        <p class="text-primary">Filter: <span class="text-danger">{{medium.filter}}</span></p>
+                        <p class="text-primary">Time: <span class="text-danger">{{medium.caption.created_time | date : 'EEE d-MM-yy'}}</span>
+                        <p class="text-primary">Likes: <span class="text-danger">{{medium.likeScore}}</span></p>
+                        <p class="text-primary">Comments: <span class="text-danger">{{medium.commentScore}}</span></p>
+                        <p class="text-primary">Combined: <span class="text-danger">{{medium.combinedScore}}</span></p>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-xs-12">
-            <div class="panel panel-info">
-                <div class="panel-heading"><h2>Last 20 Posts</h2></div>
-                <div class="panel-body">
-                    <div class="feed-item col-xs-12 col-sm-6 col-lg-4" ng-repeat="medium in selfMediaRecentArray">
-                        <div class="col-xs-6">
-                            <a ng-href="{{medium.link}}"><img class="img-thumbnail" ng-src="{{medium.images.low_resolution.url}}"></a>
-                        </div>
-
-                        <div class="col-xs-6 feed-stats">
-                            <p class="text-primary">Filter: <span class="text-danger">{{medium.filter}}</span></p>
-                            <p class="text-primary">Time: <span class="text-danger">{{medium.caption.created_time | date : 'EEE d-MM-yy'}}</span>
-                            <p class="text-primary">Likes: <span class="text-danger">{{medium.likeScore}}</span></p>
-                            <p class="text-primary">Comments: <span class="text-danger">{{medium.commentScore}}</span></p>
-                            <p class="text-primary">Combined: <span class="text-danger">{{medium.combinedScore}}</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+
 </div>

@@ -1,7 +1,3 @@
-p {
-    overflow: hidden;
-}
-
 body {
 
 }
@@ -28,7 +24,8 @@ img.user-image {
 }
 
 .user-info {
-    padding: 1em 1em;
+    border: 0.25em solid #9954bb;
+    margin: 0 auto 1em auto;
 }
 
 .nav.nav-tabs{

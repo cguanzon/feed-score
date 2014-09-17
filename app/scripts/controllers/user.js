@@ -88,7 +88,7 @@ angular.module('feedScoreApp')
                             text: 'Like/Comments Per Times Used for Recently Used Filters'
                         },
                         tooltip: {
-                            pointFormat: '{series.name}: {point.y:.2f}'
+                            pointFormat: '{series.name}: <b>{point.y:.2f}</b>'
                         },
                         xAxis: {
                             title: {
