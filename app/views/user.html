@@ -1,8 +1,8 @@
 <div class="container-fluid" cg-busy="promise">
     <div class="col-xs-12">
-        <div class="col-xs-12 col-sm-4">
-            <img class="img-responsive " ng-src="{{selfUser.profile_picture}}"/>
-            <h2 class="text-info">{{selfUser.username}}</h2>
+        <div class="col-xs-12 col-sm-2">
+            <img class="user-image" ng-src="{{selfUser.profile_picture}}"/>
+            <p class="text-info">{{selfUser.username}}</p>
         </div>
 
         <div class="col-xs-12 col-sm-8 user-info">
@@ -26,10 +26,10 @@
             <div class="panel panel-info">
                 <div class="panel-heading"><h2>Filter Stats</h2></div>
                 <div class="panel-body">
-                    <div class="col-xs-12 col-sm-6 panel panel-primary">
+                    <div class="col-xs-12 col-lg-6 panel panel-primary">
                         <highchart id="chart1" config="chartConfig1" ></highchart>
                     </div>
-                    <div class="col-xs-12 col-sm-6 panel panel-primary">
+                    <div class="col-xs-12 col-lg-6 panel panel-primary">
                         <highchart id="chart2" config="chartConfig2" ></highchart>
                     </div>
                 </div>

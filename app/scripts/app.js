@@ -32,12 +32,6 @@ angular
                 controller: 'FeedCtrl'
             })
 
-            .state('base.dashboard', {
-                url: '/dashboard',
-                templateUrl: '/views/dashboard.html',
-                controller: 'DashboardCtrl'
-            })
-
             .state('base.user', {
                 url: '/user/:user_id',
                 templateUrl: '/views/user.html',

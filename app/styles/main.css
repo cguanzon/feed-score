@@ -17,6 +17,11 @@ img:hover {
     transform: scale(1.04, 1.04);
 }
 
+img.user-image {
+    height: 4em;
+    width: 4em;
+}
+
 .feed-item {
     border-bottom: 0.1em solid lightgray;
     padding: 1em;

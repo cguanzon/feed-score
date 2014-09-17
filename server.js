@@ -32,7 +32,7 @@ exports.handleauth = function(req, res) {
                 client_id: 'be573c8873f5496caab40ab22f60b895',
                 client_secret: '440cc4c661ee4e8baa158dc4b4198e51'
             });
-            res.redirect('http://localhost:9000/#/dashboard');
+            res.redirect('http://localhost:9000/#/user/self');
         }
     });
 };

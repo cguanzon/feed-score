@@ -16,7 +16,7 @@ angular.module('feedScoreApp')
     ];
 
     $scope.goToDashboard = function(){
-        $state.go('base.dashboard');
+        $state.go('base.user', { user_id: 'self'});
     };
 
     $scope.goToFeed = function(){
