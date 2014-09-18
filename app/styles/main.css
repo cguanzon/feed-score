@@ -4,6 +4,10 @@ img {
     transition: transform 0.2s;
 }
 
+a.logo {
+    text-decoration: none;
+}
+
 
 img:hover {
     transform: scale(1.04, 1.04);

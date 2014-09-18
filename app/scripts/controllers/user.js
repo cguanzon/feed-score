@@ -9,6 +9,14 @@
  */
 angular.module('feedScoreApp')
   .controller('UserCtrl', function ($scope, FeedService, $stateParams) {
+
+    var sortByKey = function (array, key) {
+        return array.sort(function(a, b) {
+            var x = a[key]; var y = b[key];
+            return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+        });
+    };
+
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -34,12 +42,27 @@ angular.module('feedScoreApp')
                 $scope.likesPerFilterChartData = [];
                 $scope.commentsPerFilterChartData = [];
                 $scope.timesUsedPerFilterChartData = [];
+                $scope.tagsUsedPerTagChartData = [];
+
+                for (var key in $scope.selfMediaRecent.stats.tagStats) {
+                    if ($scope.selfMediaRecent.stats.tagStats.hasOwnProperty(key)){
+                        $scope.tagsUsedPerTagChartData.push(
+                            {
+                                name: key,
+                                y: $scope.selfMediaRecent.stats.tagStats[key].timesUsed
+                            }
+                        );
+                    }
+                }
+                sortByKey($scope.tagsUsedPerTagChartData, 'y');
+
+                //build filterStats chart data
                 for(var key in $scope.selfMediaRecent.stats.filterStats){
                     if ($scope.selfMediaRecent.stats.filterStats.hasOwnProperty(key)){
                         $scope.likesPerFilterChartData.push(
                             {
                                 name: key,
-                                y: $scope.selfMediaRecent.stats.filterStats[key].likeScorePerTimesUsed,
+                                y: Math.round($scope.selfMediaRecent.stats.filterStats[key].likeScorePerTimesUsed*10)/10,
                                 dataLabels: {
                                     enabled: true
                                 }
@@ -49,7 +72,7 @@ angular.module('feedScoreApp')
                         $scope.commentsPerFilterChartData.push(
                             {
                                 name: key,
-                                y: $scope.selfMediaRecent.stats.filterStats[key].commentScorePerTimesUsed,
+                                y: Math.round($scope.selfMediaRecent.stats.filterStats[key].commentScorePerTimesUsed*10)/10,
                                 dataLabels: {
                                     enabled: true
                                 }
@@ -67,6 +90,12 @@ angular.module('feedScoreApp')
 
                     }
                 }
+                sortByKey($scope.likesPerFilterChartData, 'y');
+                sortByKey($scope.commentsPerFilterChartData, 'y');
+                sortByKey($scope.timesUsedPerFilterChartData, 'y');
+
+
+
 
                 var chartTextStyle = {
                     fontSize: '13px',
@@ -185,6 +214,58 @@ angular.module('feedScoreApp')
                         name: 'Times Used',
                         innerSize: '30%',
                         data: $scope.timesUsedPerFilterChartData
+                    }]
+                };
+
+                $scope.chartConfig3 = {
+                    options: {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: 'Times Used for Top 5 Tags'
+                        },
+                        xAxis: {
+                            title: {
+                                text: 'Tag',
+                                style: chartTextStyle
+                            },
+                            type: 'category',
+                            labels: {
+                                style: chartTextStyle
+                            }
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: 'Likes/Comments per Filter',
+                                style: chartTextStyle
+                            }
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.y}</b>'
+                        },
+                        plotOptions: {
+                            bar: {
+                                dataLabels: {
+                                    enabled: true
+                                }
+                            }
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'bottom',
+                            y: -100,
+                            floating: true,
+                            borderWidth: 1,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        }
+                    },
+                    series: [{
+                        name: 'Times Used',
+                        data: $scope.tagsUsedPerTagChartData.slice(0,4)
                     }]
                 };
             }

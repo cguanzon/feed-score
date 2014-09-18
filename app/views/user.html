@@ -16,6 +16,8 @@
                 <li class="list-group-item"><span class="text-info">{{selfMediaRecent.stats.likeScorePerMedia.name}}:</span> <span class="badge alert-info"><b>{{selfMediaRecent.stats.likeScorePerMedia.value | number:1}}</b></span></li>
                 <li class="list-group-item"><span class="text-info">{{selfMediaRecent.stats.commentScorePerMedia.name}}:</span> <span class="badge alert-info"><b>{{selfMediaRecent.stats.commentScorePerMedia.value | number:1}}</b></span></li>
                 <li class="list-group-item"><span class="text-info">{{selfMediaRecent.stats.tagsPerPost.name}}:</span> <span class="badge alert-info"><b>{{selfMediaRecent.stats.tagsPerPost.value | number:1}}</b></span></li>
+                <li class="list-group-item"><span class="text-info">Favorite Filter:</span> <span class="badge alert-info"><b>{{timesUsedPerFilterChartData[0].name}}</b></span></li>
+                <li class="list-group-item"><span class="text-info">Favorite Tag:</span> <span class="badge alert-info"><b>{{tagsUsedPerTagChartData[0].name}}</b></span></li>
             </ul>
         </div>
     </div>
@@ -31,6 +33,13 @@
                 </div>
             </div>
         </div>
+        <div class="panel panel-info">
+            <div class="panel-heading"><h2>Tag Stats</h2></div>
+            <div class="panel-body">
+                <div class="col-xs-12 col-lg-6 panel panel-primary">
+                    <highchart id="chart3" config="chartConfig3" ></highchart>
+                </div>
+            </div>
     </div>
 
     <div class="col-xs-12 col-sm-9 pull-right user-feed">
