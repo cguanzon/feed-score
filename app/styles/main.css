@@ -1,3 +1,11 @@
+.top > h1 {
+    font-size: 5em;
+}
+
+.nav > li {
+    font-size: 1.8em;
+}
+
 img {
     margin: 0.5em 0;
     box-shadow: 0.08em 0.08em 0.1em 0.1em #ccc;
@@ -26,6 +34,11 @@ img.user-image.img-responsive {
     margin: 0 0;
     background-color: transparent;
     border-color: transparent;
+    font-size: 1.25em;
+}
+
+.list-group-item > .badge {
+    font-size: 1em;
 }
 
 .feed-item {

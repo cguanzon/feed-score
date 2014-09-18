@@ -21,6 +21,7 @@
             </ul>
         </div>
     </div>
+
     <div class="col-xs-12 col-md-9 pull-right graphs">
         <div class="panel panel-info">
             <div class="panel-heading"><h2>Filter Stats</h2></div>
@@ -36,17 +37,18 @@
         <div class="panel panel-info">
             <div class="panel-heading"><h2>Tag Stats</h2></div>
             <div class="panel-body">
-                <div class="col-xs-12 col-lg-6 panel panel-primary">
+                <div class="col-xs-12 panel panel-primary">
                     <highchart id="chart3" config="chartConfig3" ></highchart>
                 </div>
             </div>
+        </div>
     </div>
 
-    <div class="col-xs-12 col-sm-9 pull-right user-feed">
+    <div class="col-xs-12 col-md-9 pull-right user-feed">
         <div class="panel panel-info">
             <div class="panel-heading"><h2>Last 20 Posts</h2></div>
             <div class="panel-body">
-                <div class="feed-item col-xs-12 col-sm-6 col-lg-4" ng-repeat="medium in selfMediaRecentArray">
+                <div class="feed-item col-xs-12 col-sm-6" ng-repeat="medium in selfMediaRecentArray">
                     <div class="col-xs-6">
                         <a ng-href="{{medium.link}}"><img class="img-thumbnail" ng-src="{{medium.images.low_resolution.url}}"></a>
                     </div>

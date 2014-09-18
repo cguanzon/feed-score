@@ -223,7 +223,7 @@ angular.module('feedScoreApp')
                             type: 'bar'
                         },
                         title: {
-                            text: 'Times Used for Top 5 Tags'
+                            text: 'Times Used for Top Tags'
                         },
                         xAxis: {
                             title: {
@@ -251,21 +251,11 @@ angular.module('feedScoreApp')
                                     enabled: true
                                 }
                             }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'bottom',
-                            y: -100,
-                            floating: true,
-                            borderWidth: 1,
-                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                            shadow: true
                         }
                     },
                     series: [{
                         name: 'Times Used',
-                        data: $scope.tagsUsedPerTagChartData.slice(0,4)
+                        data: $scope.tagsUsedPerTagChartData.slice(0,5)
                     }]
                 };
             }
