@@ -42,16 +42,9 @@ var fixFeed = function(feed){
     var fixedFeed = feed;
     for(var i= 0; i < fixedFeed.length; i++){
         var context = fixedFeed[i];
-        if(context.caption) {
-            var contextCaption = context.caption;
-            contextCaption.text =
-                    contextCaption.text.length <= 80 ?
-                contextCaption.text : contextCaption.text.substring(0, 19) + ' ...';
-            contextCaption.created_time *= 1000;
-        }
         context.likeScore = context.likes.count;
         context.commentScore = context.comments.count;
-        context.combinedScore = context.likeScore + context.commentScore;
+        context.tagScore = context.tags.length;
     }
     return fixedFeed;
 };
@@ -62,39 +55,52 @@ var addAdvancedStats = function(fixedHolder){
     advancedHolder.stats= {
         totalLikeScore : {name: 'Total Likes', value: 0},
         totalCommentScore : {name: 'Total Comments', value: 0},
-        totalCombinedScore : {name: 'Total Combined', value: 0},
+        totalTags : {name: 'Total Tags', value: 0},
         likeScorePerMedia : {name: 'Likes per Post', value: 0},
         commentScorePerMedia : {name: 'Comments per Post', value: 0},
-        combinedScorePerMedia : {name: 'Combined per Post', value: 0},
-        filterStats : {}
+        tagsPerPost : {name: 'Tags per Post', value: 0},
+        filterStats : {},
+        tagStats: {}
     };
     var statsContext = advancedHolder.stats;
     var filterStatsContext = statsContext.filterStats;
+    var tagStatsContext = statsContext.tagStats;
 
     for(var i=0; i < advancedFeed.length; i++){
         var advancedContext = advancedFeed[i];
         statsContext.totalLikeScore.value += advancedContext.likeScore;
         statsContext.totalCommentScore.value += advancedContext.commentScore;
-        statsContext.totalCombinedScore.value += advancedContext.combinedScore;
+        statsContext.totalTags.value += advancedContext.tagScore;
+
+        //computes tag stats
+        var contextTagArray = advancedContext.tags;
+        for(var j=0; j < contextTagArray.length; j++){
+            var contextTag = contextTagArray[j];
+            if (tagStatsContext.hasOwnProperty(contextTag)) {
+                tagStatsContext[contextTag].timesUsed++;
+            } else {
+                tagStatsContext[contextTag] = {
+                    timesUsed: 1
+                }
+            }
+        }
+
+        //computes filter stats
         if (advancedContext.hasOwnProperty('filter')) {
             var contextFilter = advancedContext.filter;
             if (filterStatsContext.hasOwnProperty(contextFilter)) {
                 filterStatsContext[contextFilter].timesUsed++;
                 filterStatsContext[contextFilter].totalLikeScoreForFilter += advancedContext.likeScore;
                 filterStatsContext[contextFilter].totalCommentScoreForFilter += advancedContext.commentScore;
-                filterStatsContext[contextFilter].totalCombinedScoreForFilter += advancedContext.combinedScore;
                 filterStatsContext[contextFilter].likeScorePerTimesUsed = filterStatsContext[contextFilter].totalLikeScoreForFilter / filterStatsContext[contextFilter].timesUsed;
                 filterStatsContext[contextFilter].commentScorePerTimesUsed = filterStatsContext[contextFilter].totalCommentScoreForFilter / filterStatsContext[contextFilter].timesUsed;
-                filterStatsContext[contextFilter].combinedScorePerTimesUsed = filterStatsContext[contextFilter].totalCombinedScoreForFilter / filterStatsContext[contextFilter].timesUsed;
             } else {
                 filterStatsContext[contextFilter] = {
                     timesUsed: 1,
                     totalLikeScoreForFilter: advancedContext.likeScore,
                     totalCommentScoreForFilter: advancedContext.commentScore,
-                    totalCombinedScoreForFilter: advancedContext.combinedScore,
                     likeScorePerTimesUsed: advancedContext.likeScore,
-                    commentScorePerTimesUsed: advancedContext.commentScore,
-                    combinedScorePerTimesUsed: advancedContext.combinedScore
+                    commentScorePerTimesUsed: advancedContext.commentScore
                 };
             }
         }
@@ -102,7 +108,7 @@ var addAdvancedStats = function(fixedHolder){
 
     statsContext.likeScorePerMedia.value = statsContext.totalLikeScore.value / advancedFeed.length;
     statsContext.commentScorePerMedia.value = statsContext.totalCommentScore.value / advancedFeed.length;
-    statsContext.combinedScorePerMedia.value = statsContext.totalCombinedScore.value / advancedFeed.length;
+    statsContext.tagsPerPost.value = statsContext.totalTags.value / advancedFeed.length;
 
     return advancedHolder;
 

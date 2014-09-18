@@ -15,6 +15,7 @@
                 <li class="list-group-item"><span class="text-info">Following:</span> <span class="badge alert-info"><b>{{selfUser.counts.follows | number:0}}</b></span></li>
                 <li class="list-group-item"><span class="text-info">{{selfMediaRecent.stats.likeScorePerMedia.name}}:</span> <span class="badge alert-info"><b>{{selfMediaRecent.stats.likeScorePerMedia.value | number:1}}</b></span></li>
                 <li class="list-group-item"><span class="text-info">{{selfMediaRecent.stats.commentScorePerMedia.name}}:</span> <span class="badge alert-info"><b>{{selfMediaRecent.stats.commentScorePerMedia.value | number:1}}</b></span></li>
+                <li class="list-group-item"><span class="text-info">{{selfMediaRecent.stats.tagsPerPost.name}}:</span> <span class="badge alert-info"><b>{{selfMediaRecent.stats.tagsPerPost.value | number:1}}</b></span></li>
             </ul>
         </div>
     </div>
@@ -46,7 +47,8 @@
                         <p class="text-primary">Time: <span class="text-danger">{{medium.caption.created_time | date : 'EEE d-MM-yy'}}</span>
                         <p class="text-primary">Likes: <span class="text-danger">{{medium.likeScore}}</span></p>
                         <p class="text-primary">Comments: <span class="text-danger">{{medium.commentScore}}</span></p>
-                        <p class="text-primary">Combined: <span class="text-danger">{{medium.combinedScore}}</span></p>
+                        <p class="text-primary">Tags: <span class="text-danger">{{medium.tagScore}}</span></p>
+
                     </div>
                 </div>
             </div>

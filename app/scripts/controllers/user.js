@@ -39,7 +39,7 @@ angular.module('feedScoreApp')
                         $scope.likesPerFilterChartData.push(
                             {
                                 name: key,
-                                y: Math.round($scope.selfMediaRecent.stats.filterStats[key].likeScorePerTimesUsed*10)/10,
+                                y: $scope.selfMediaRecent.stats.filterStats[key].likeScorePerTimesUsed,
                                 dataLabels: {
                                     enabled: true
                                 }
@@ -49,7 +49,7 @@ angular.module('feedScoreApp')
                         $scope.commentsPerFilterChartData.push(
                             {
                                 name: key,
-                                y: Math.round($scope.selfMediaRecent.stats.filterStats[key].commentScorePerTimesUsed*10)/10,
+                                y: $scope.selfMediaRecent.stats.filterStats[key].commentScorePerTimesUsed,
                                 dataLabels: {
                                     enabled: true
                                 }
