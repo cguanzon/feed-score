@@ -1,5 +1,7 @@
 FeedScore
 =========
 
-This app is built with angularJS, NodeJS and express.
+This whole idea has been moved to a different repo. Click on the link below
+
+https://github.com/cguanzon/postalyzer
 
